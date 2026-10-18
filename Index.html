@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rapor Digital Madrasah | MIS Hidayatul Insan</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+:root{--green:#668b00;--nav:#394b66;--blue:#3523df;--bg:#eef0f3;--line:#d9dde4;--text:#26364c;--muted:#8290a3;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font:14px/1.45 "Segoe UI",Arial,sans-serif;color:var(--text);background:var(--bg)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:4px;padding:9px 13px;background:var(--blue);color:white}button.secondary{background:#fff;color:var(--blue);border:1px solid var(--blue)}button.green{background:var(--green)}button.danger{background:#e94b58}.topbar{height:48px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 22px 0 18px;position:fixed;top:0;left:0;right:0;z-index:5}.brand{position:fixed;top:0;left:0;width:205px;height:48px;background:white;color:#16844d;display:flex;align-items:center;gap:8px;padding:4px 14px;z-index:7;font-weight:800}.brand-mark{font-size:25px;border:3px solid #178b5d;padding:0 4px;line-height:1.2}.brand small{display:block;color:#d33;font-size:12px;line-height:1.1}.topbar .school{margin-left:220px}.hamb{margin-left:205px;background:transparent;font-size:20px;padding:6px 10px}.sidebar{position:fixed;top:48px;bottom:0;left:0;width:205px;background:var(--nav);color:#dce5f1;overflow:auto;transition:.2s;z-index:4}.semester{background:#f4c400;color:#111;text-align:center;font-size:11px;padding:7px;margin:12px 10px}.navitem{display:flex;gap:13px;align-items:center;padding:12px 15px;color:#e5edf7;cursor:pointer;border-left:3px solid transparent}.navitem:hover,.navitem.active{background:#3423df;border-left-color:#a9a1ff}.navsection{font-size:10px;font-weight:700;color:#aab8ca;padding:22px 13px 8px}.main{margin-left:205px;padding:62px 24px 35px;transition:.2s}.crumb{font-size:11px;color:#66768d;margin:0 0 16px}.crumb span{color:#c0c8d3;padding:0 8px}.page-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.page-title h1{font-size:21px;font-weight:500;margin:0}.page-title p{color:var(--muted);margin:3px 0 0;font-size:12px}.grid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:24px}.card{background:#fff;border:1px solid #d4d9e1;border-radius:4px;margin-bottom:18px;overflow:hidden}.cardhead{border-bottom:1px solid var(--line);padding:12px 15px;font-weight:600;font-size:13px}.cardbody{padding:15px}.profile{text-align:center;padding:18px}.crest{width:90px;height:90px;border-radius:50%;border:4px double #e3b91b;background:#078650;color:#ffe46b;display:grid;place-items:center;font-size:34px;margin:0 auto 12px}.profile h2{font-size:17px;font-weight:500;margin:0}.profile p{color:#b6becb;font-size:12px;margin:4px 0 15px}.actions{display:flex;justify-content:center;gap:4px}.actions button{font-size:10px;padding:6px}.notice{background:#ffb515;border:1px solid #e9a000;color:#fff;border-radius:3px;margin-bottom:18px}.notice h3{font-size:12px;font-weight:500;margin:0;padding:11px 16px;border-bottom:1px solid #e6a00c}.notice p{font-size:12px;margin:0;padding:14px 16px}.field{margin-bottom:14px}.field label{display:block;font-size:12px;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;padding:9px 10px;border:1px solid #cfd6e0;border-radius:3px;background:white;color:#33445a}.field textarea{min-height:75px;resize:vertical}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.data-row{display:grid;grid-template-columns:160px 1fr;padding:13px 0;border-bottom:1px solid #cdd2d9;font-size:12px}.data-row:last-child{border:0}.data-row span:first-child{color:#1f3856}.data-row span:last-child{color:#506784}.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.tabs button{font-size:12px}.tabs button:not(.selected){background:#fff;color:#53647c;border:1px solid var(--line)}.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}.toolbar input,.toolbar select{padding:9px;border:1px solid var(--line);border-radius:4px;background:#fff;min-width:150px}.toolbar .spacer{flex:1}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;background:#fff;font-size:12px}th,td{padding:11px 10px;text-align:left;border-bottom:1px solid #e1e5eb;white-space:nowrap}th{background:#f6f8fa;font-weight:600;color:#4d5d72;cursor:pointer;user-select:none;}th:hover{background:#e8ecef}tbody tr:hover{background:#fafbff}.pill{display:inline-block;border-radius:20px;padding:3px 8px;font-size:10px;background:#e6f6ec;color:#20834b}.pill.warn{background:#fff1d4;color:#9d6800}.pill.gray{background:#edf0f4;color:#64748b}.empty{padding:25px;text-align:center;color:#8a96a7}.footer{text-align:center;color:#9aa4b3;font-size:11px;margin-top:28px}.hidden{display:none!important}.sidecollapsed .sidebar{width:62px}.sidecollapsed .sidebar .navtext,.sidecollapsed .sidebar .navsection,.sidecollapsed .semester{display:none}.sidecollapsed .navitem{justify-content:center;font-size:17px;padding:14px 0}.sidecollapsed .main{margin-left:62px}.modalback{position:fixed;inset:0;background:#17223888;display:grid;place-items:center;z-index:10;padding:20px}.modal{background:#fff;border-radius:7px;width:min(650px,100%);max-height:90vh;overflow:auto;box-shadow:0 20px 70px #0003}.modalhead{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line);font-weight:700}.modalbody{padding:18px}.modalfoot{padding:14px 18px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px}.xbtn{background:transparent;color:#5c6879;font-size:22px;padding:0 5px}.report-paper{border:1px solid #d7dce4;padding:25px;max-width:760px;margin:0 auto;background:white}.report-paper h2,.report-paper h3{text-align:center;margin:3px}.report-paper table{margin-top:12px}.report-paper td,.report-paper th{white-space:normal}.toast{position:fixed;right:20px;bottom:20px;background:#20334c;color:white;padding:12px 18px;border-radius:5px;z-index:20;box-shadow:0 6px 25px #0002}
+.report-paper,
+.report-paper * {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.report-paper > div:first-child {
+  position: relative;
+  isolation: isolate;
+  overflow: visible !important;
+  background: transparent !important;
+}
+
+.report-paper > div:first-child > div:first-child {
+  position: relative !important;
+  z-index: 2 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  overflow: visible !important;
+}
+
+.report-paper > div:first-child > div:first-child img,
+.report-paper img.report-logo {
+  display: block !important;
+  position: relative !important;
+  z-index: 3 !important;
+  width: 84px !important;
+  height: 84px !important;
+  max-width: 100% !important;
+  max-height: 84px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+}
+
+.report-paper > div:first-child > div:first-child > div {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.report-paper > div:first-child {
+  border-bottom: 3px solid #111 !important;
+  padding-bottom: 12px; }
+
+
+@media(max-width:900px){.grid{grid-template-columns:1fr}.profilecol{display:none}.main{padding:62px 14px 25px}.sidebar{width:62px}.sidebar .navtext,.sidebar .navsection,.sidebar .semester{display:none}.sidebar .navitem{justify-content:center;padding:14px 0}.main{margin-left:62px}.brand{width:62px;padding:4px 8px}.brand-name{display:none}.hamb{margin-left:62px}.topbar .school{margin-left:12px}.row{grid-template-columns:1fr}}
+
+.report-f4 {
+    width: 100%;
+    max-width: 215.9mm;
+    margin: 0 auto;
+    background: white;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    font-size: 9.5pt;
+    line-height: 1.15;
+    page-break-after: always; 
+    break-after: page;
+}
+/* GAYA KHUSUS KERTAS RAPOR F4 LANDSCAPE (UNTUK LEGGER) */
+.report-f4-landscape {
+    width: 100%;
+    max-width: 330.2mm; /* Lebar F4 Landscape */
+    margin: 0 auto;
+    background: white;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    font-size: 9.5pt;
+    line-height: 1.15;
+}
+
+.report-f4-landscape table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 5px; 
+    page-break-inside: auto; 
+}
+.report-f4-landscape tr { 
+    page-break-inside: avoid; 
+    page-break-after: auto; 
+}
+/* Memastikan Header Tabel Berulang di halaman berikutnya */
+.report-f4-landscape thead { 
+    display: table-header-group; 
+}
+.report-f4-landscape th, .report-f4-landscape td { 
+    border: 1px solid black; 
+    padding: 4px; 
+    vertical-align: middle; 
+}
+/* Format Wrap-Text untuk Mata Pelajaran */
+.report-f4-landscape th { 
+    text-align: center; 
+    font-weight: bold; 
+    background: #fff !important; 
+    white-space: normal; 
+    word-wrap: break-word;
+}
+.report-f4-landscape .no-border td { 
+    border: none; 
+    padding: 2px 4px 2px 188px; 
+}
+
+.report-f4-landscape .no-border td { 
+    border: none; 
+    padding: 2px 4px 2px 188px; 
+}
+
+.report-f4-landscape2 .no-border td { 
+    border: none; 
+    padding: 4px 1px 2px 15px; 
+}
+.report-f4:last-child {
+    page-break-after: auto;
+    break-after: auto;
+}
+
+.report-f4 table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 9.5pt; }
+.report-f4 th, .report-f4 td { border: 1px solid black; padding: 4px 5px; vertical-align: middle; }
+.report-f4 th { text-align: center; font-weight: bold; background: #fff !important; -webkit-print-color-adjust: exact; }
+.report-f4 .no-border td { border: none; padding: 2px 4px; }
+.report-f4 .kop-surat { display: flex; align-items: center; border-bottom: 3px solid black; padding-bottom: 5px; margin-bottom: 8px; }
+.report-f4 .kop-surat h3 { margin: 0; font-size: 13pt; }
+.report-f4 .kop-surat h2 { margin: 0; font-size: 15pt; font-weight: bold; }
+.report-f4 .kop-surat p { margin: 2px 0 0; font-size: 10pt; }
+
+@media print {
+    @page { 
+        size: 215.9mm 330.2mm;
+        margin: 10mm 15mm 10mm 15mm;
+    }
+    .topbar, .sidebar, .crumb, .page-title, .toolbar, .brand, .brand-mark, .tabs, .footer, .notice, .no-print, #reportContainer > .cardbody { display: none !important; }
+    .main { margin: 0 !important; padding: 0 !important; background: #fff; }
+    .card { border: 0; box-shadow: none; margin: 0; padding:0; background: #fff; }
+    .cardhead { display: none; }
+    body { background: #fff; }
+    #hiddenPrintArea { display: block !important; }
+    .report-paper {
+    background: #fff !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .report-paper > div:first-child,
+  .report-paper > div:first-child > div:first-child,
+  .report-paper > div:first-child > div:first-child img {
+    background: transparent !important;
+    box-shadow: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* LOGIN DAN NAVIGASI BERDASARKAN PERAN */
+body.app-locked .brand, body.app-locked .topbar, body.app-locked .sidebar, body.app-locked .main { display:none !important; }
+.login-screen{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 15% 15%,#dfeee2 0,transparent 36%),linear-gradient(135deg,#edf2f7,#f7fafc 55%,#e6efe7);}
+.login-card{width:min(420px,100%);background:#fff;border:1px solid #dbe3ea;border-radius:16px;box-shadow:0 22px 70px #24364b22;overflow:hidden;}
+.login-head{background:#668b00;color:#fff;text-align:center;padding:26px 24px 23px;}
+.login-mark{width:66px;height:66px;border:3px solid #fff;border-radius:15px;display:grid;place-items:center;margin:0 auto 12px;font-weight:900;font-size:20px;letter-spacing:1px;}
+.login-head h1{font-size:20px;margin:0 0 5px;font-weight:700;}.login-head p{margin:0;font-size:12px;opacity:.9;}
+.login-body{padding:25px 25px 22px;}.login-body .field label{font-size:13px;font-weight:600;color:#33445a;}.login-body .field input{padding:12px;border-radius:7px;}.login-submit{width:100%;padding:12px;border-radius:7px;background:#3523df;font-weight:700;margin-top:4px;}.login-error{display:none;color:#b42318;background:#fff0ef;border:1px solid #ffcfca;border-radius:6px;padding:10px 12px;margin-bottom:15px;font-size:12px;}.login-help{font-size:11px;color:#8290a3;text-align:center;margin:15px 0 0;}
+.navitem.logout-item{color:#ffd6d6;margin-top:8px;border-top:1px solid #53627a;}.navitem.logout-item:hover{background:#9c2633;border-left-color:#ffb6b6;}
+.teacher-status{font-weight:800;font-size:18px;display:inline-block;min-width:24px;text-align:center}.teacher-status.pending{color:#dc2626}.teacher-status.sent{color:#16803d}.warning-box{padding:13px 15px;border:1px solid #f1b8b8;background:#fff4f4;color:#8e2323;border-radius:5px;margin:0 0 14px}.warning-box h3{margin:0 0 7px;font-size:13px}.warning-box ul{margin:6px 0 0;padding-left:20px}.score-input{width:115px;max-width:100%;padding:8px;border:1px solid #cfd6e0;border-radius:4px}.note-input{min-width:220px;width:100%;min-height:54px;padding:8px;border:1px solid #cfd6e0;border-radius:4px}.small-muted{font-size:11px;color:#748197}.login-screen.hidden{display:none!important;}
+.grade-modal .modal{width:min(920px,100%);max-height:94vh}.grade-modal .modalbody{padding:12px}.grade-modal .tablewrap{max-height:62vh;overflow:auto}.grade-modal .modalhead{position:sticky;top:0;background:#fff;z-index:2}.grade-modal .modalfoot{position:sticky;bottom:0;background:#fff;z-index:2;justify-content:space-between}.grade-modal .modal-actions-left,.grade-modal .modal-actions-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}@media(max-width:600px){.grade-modal{padding:8px}.grade-modal .modal{max-height:96vh}.grade-modal th,.grade-modal td{padding:8px 6px;font-size:11px}}
+.topbar .school{flex:-1;min-width:0}.topbar #returnAdminButton{white-space:nowrap;margin-left:12px;padding:7px 10px;font-size:12px;background:#fff;color:#394b66;border:1px solid #e0e6ee}.topbar #returnAdminButton:hover{background:#f1f5f9}.tabs.teacher-category{margin:0 0 14px}.tabs.teacher-category button{padding:10px 14px}.user-login-note{font-size:11px;color:#7a8798;margin-top:8px}.trait-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.trait-grid .field{margin-bottom:4px}@media(max-width:600px){.trait-grid{grid-template-columns:1fr}.topbar #returnAdminButton{font-size:10px;padding:6px 7px;margin-left:5px}.topbar .school{font-size:11px}}
+@media(max-width:600px){.login-body{padding:20px}.login-head{padding:22px 18px}.login-card{border-radius:12px}}
+</style>
+</head>
+<body class="app-locked">
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-head"><div class="login-mark">RDM</div><h1>Rapor Digital Madrasah</h1><p>MIS Hidayatul Insan Kota Palangka Raya</p></div>
+    <form class="login-body" id="loginForm" onsubmit="submitLogin(event)">
+      <div id="loginError" class="login-error" role="alert"></div>
+      <div class="field"><label for="loginUsername">Username</label><input id="loginUsername" name="username" autocomplete="username" required placeholder="Masukkan username"></div>
+      <div class="field"><label for="loginPassword">Password</label><input id="loginPassword" name="password" type="password" autocomplete="current-password" required placeholder="Masukkan password"></div>
+      <button id="loginButton" class="login-submit" type="submit">Masuk</button>
+      <p id="loginStatus" class="login-help">Silakan masuk menggunakan akun Admin atau Guru.</p>
+    </form>
+  </div>
+</div>
+<div class="brand"><span class="brand-mark">RDM</span><span class="brand-name">Rapor<small>Digital Madrasah</small></span></div>
+<header class="topbar"><button class="hamb" id="collapse">☰</button><div class="school">MIS HIDAYATUL INSAN  ◉</div><button type="button" id="returnAdminButton" class="hidden" onclick="returnToAdmin()">↩ Kembali ke Menu Admin</button></header>
+<aside class="sidebar" id="sidebar">
+<div class="semester" id="sidebarSemester">TENGAH SEMESTER GANJIL 2026/2027</div>
+<div class="navitem active" data-page="dashboard"><span>◴</span><span class="navtext">Dashboard</span></div>
+<div class="navitem" data-page="profil"><span>▦</span><span class="navtext">Profil Madrasah</span></div>
+<div class="navsection">DATA MASTER</div>
+<div class="navitem" data-page="guru"><span>♙</span><span class="navtext">Guru</span></div>
+<div class="navitem" data-page="kelas"><span>⚙</span><span class="navtext">Kelas & Rombel</span></div>
+<div class="navitem" data-page="siswa"><span>♧</span><span class="navtext">Siswa</span></div>
+<div class="navsection">MATA PELAJARAN</div>
+<div class="navitem" data-page="mapel_reguler"><span>▤</span><span class="navtext">Mapel Reguler</span></div>
+<div class="navitem" data-page="mapel_tahfidz"><span>▥</span><span class="navtext">Mapel Tahfidz</span></div>
+<div class="navsection">PENILAIAN</div>
+<div class="navitem" data-page="nilai"><span>▧</span><span class="navtext">Input Nilai</span></div>
+<div class="navitem" data-page="rapor_akademik"><span>▣</span><span class="navtext">Rapor Akademik</span></div>
+<div class="navitem" data-page="rapor_tahfidz"><span>۞</span><span class="navtext">Rapor Tahfidz</span></div>
+<div class="navitem" data-page="legger_nilai"><span>📋</span><span class="navtext">Legger Nilai</span></div>
+<div class="navsection">ADMINISTRASI</div>
+<div class="navitem" data-page="pengguna"><span>♧</span><span class="navtext">Admin Aplikasi</span></div>
+<div class="navitem" data-page="backup"><span>▤</span><span class="navtext">Backup & Restore</span></div>
+<div class="navsection">AKUN</div><div class="navitem" id="reset"><span>↻</span><span class="navtext">Reset Data Demo</span></div>
+</aside>
+<main class="main">
+<div class="crumb">Home <span>/</span> Admin <span>/</span> <b id="crumb">Dashboard</b></div>
+<div class="page-title"><div><h1 id="title">Dashboard</h1><p id="subtitle">Ringkasan pengelolaan rapor digital madrasah</p></div><button class="green" id="quickAdd">＋ Tambah Data</button></div>
+<div id="content"></div>
+<div class="footer">Rapor Digital Madrasah • MIS Hidayatul Insan Kota Palangka Raya • </div>
+</main>
+<div id="modalroot"></div><div id="toastroot"></div>
+<script>
+const initial={
+profil:{nama:"MIS HIDAYATUL INSAN",nsm:"111262710003",npsn:"60722779",alamat:"Jl. Sulawesi No. 76",kecamatan:"PAHANDUT",kota:"KOTA PALANGKARAYA",provinsi:"KALIMANTAN TENGAH",kepala:"Ustadz H. Abdullah Sani, S.Pd",semester:"Ganjil",tahun:"2026/2027",tglCetak:"16 Mei 2026",logo:""},
+kelas:[
+  {id:1,nama:"I Reguler",wali:"Ustadzah Fatimah",tingkat:"1"},
+  {id:2,nama:"II Reguler",wali:"-",tingkat:"2"},
+  {id:3,nama:"III Reguler",wali:"-",tingkat:"3"},
+  {id:4,nama:"IV Reguler",wali:"-",tingkat:"4"},
+  {id:5,nama:"V Reguler",wali:"-",tingkat:"5"},
+  {id:6,nama:"VI Reguler",wali:"-",tingkat:"6"},
+  {id:7,nama:"I Tahfidz",wali:"Ustadzah Aisyah",tingkat:"1"},
+  {id:8,nama:"II Tahfidz",wali:"-",tingkat:"2"},
+  {id:9,nama:"III Tahfidz",wali:"-",tingkat:"3"},
+  {id:10,nama:"IV Tahfidz",wali:"-",tingkat:"4"},
+  {id:11,nama:"V Tahfidz",wali:"-",tingkat:"5"},
+  {id:12,nama:"VI Tahfidz",wali:"Ustadz Riyan",tingkat:"6"}
+],
+guru:[{id:1,pegid:"19800101",nama:"Ustadz H. Abdullah Sani, S.Pd",nip:"-",jabatan:"Kepala Madrasah"},{id:2,pegid:"19850202",nama:"Ustadzah Aisyah",nip:"-",jabatan:"Guru Kelas"},{id:3,pegid:"19900303",nama:"Ustadz Riyan",nip:"-",jabatan:"Guru Tahfidz"},{id:4,pegid:"19920404",nama:"Ustadzah Fatimah",nip:"-",jabatan:"Guru Kelas"}],
+siswa:[{id:1,nis:"26001",nisn:"3100000001",nama:"Ahmad Zaini",kelas:"I A Tahfidz",jk:"L"},{id:2,nis:"26002",nisn:"3100000002",nama:"Aisyah Putri",kelas:"I A Tahfidz",jk:"P"},{id:3,nis:"26003",nisn:"3100000003",nama:"Muhammad Fadhil",kelas:"VI Tahfidz",jk:"L"},{id:4,nis:"26004",nisn:"3100000004",nama:"Khadijah Zahra",kelas:"I B Reguler",jk:"P"}],
+mapel_reguler:[{id:1,nama:"Al-Qur'an Hadis",kelompok:"PAI"},{id:2,nama:"Akidah Akhlak",kelompok:"PAI"},{id:3,nama:"Fikih",kelompok:"PAI"},{id:4,nama:"Bahasa Indonesia",kelompok:"Umum"},{id:5,nama:"Matematika",kelompok:"Umum"}],
+mapel_tahfidz:[{id:1,surah:"Al-Baqarah",kelompok:"Murojaah Juz 1"},{id:2,surah:"Target Juz 30 (Juz 'Amma)",kelompok:"Juz 30"}],
+nilai:[{id:1,siswa:"Ahmad Zaini",kelas:"I A Tahfidz",mapel:"Al-Qur'an Hadis",pengetahuan:88,keterampilan:90,semester:"Ganjil",tahun:"2026/2027"},{id:2,siswa:"Aisyah Putri",kelas:"I A Tahfidz",mapel:"Matematika",pengetahuan:92,keterampilan:89,semester:"Ganjil",tahun:"2026/2027"}],
+pengampu:[]
+};
+
+let db = JSON.parse(JSON.stringify(initial)); 
+let page="dashboard", editing=null;
+let currentSort = { col: '', asc: true };
+const $=s=>document.querySelector(s);
+
+// FUNGSI HELPER YANG HILANG
+function esc(str) {
+    if (str == null) return "";
+    return String(str).replace(/[&<>"']/g, m => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[m]));
+}
+
+function toast(msg) {
+    let tr = document.getElementById("toastroot");
+    if (!tr) return;
+    let t = document.createElement("div");
+    t.className = "toast";
+    t.textContent = msg;
+    tr.appendChild(t);
+    setTimeout(() => { if(t.parentNode) t.parentNode.removeChild(t); }, 3000);
+}
+
+function checkMigrate(d) {
+    if(!d) return false;
+    let changed = false;
+    if(!d.profil) { d.profil = JSON.parse(JSON.stringify(initial.profil)); changed = true; }
+    if(d.mapel && !d.mapel_reguler) {
+        d.mapel_reguler = d.mapel; 
+        d.mapel_tahfidz = [];
+        delete d.mapel;
+        changed = true;
+    }
+    if(!d.profil.tglCetak) { d.profil.tglCetak = "16 Mei 2026"; changed = true; }
+    if(!d.pengampu) { d.pengampu = []; changed = true; }
+    if(!d.kelas) d.kelas = [];
+    if(!d.guru) d.guru = [];
+    if(!d.siswa) d.siswa = [];
+    if(!d.mapel_reguler) d.mapel_reguler = [];
+    if(!d.mapel_tahfidz) d.mapel_tahfidz = [];
+    if(!d.nilai) d.nilai = [];
+    return changed;
+}
+
+function updateSidebarSemester() {
+    if($("#sidebarSemester") && db && db.profil) {
+        let sem = String(db.profil.semester || "Ganjil").toUpperCase();
+        let thn = db.profil.tahun || "";
+        $("#sidebarSemester").textContent = `SEMESTER ${sem} ${thn}`;
+    }
+}
+
+function processServerData(serverData) {
+    try {
+        if (typeof serverData === "string") {
+            serverData = JSON.parse(serverData);
+        }
+        if (serverData && !serverData.error && serverData.profil) {
+            db = serverData;
+            checkMigrate(db);
+            migrateGradeStudentIdentity();
+            toast("Data tersinkronisasi Database");
+        } else if (serverData && serverData.error === 'kosong') {
+            toast("Spreadsheet kosong. Menginisialisasi data awal ke server...");
+            save();
+        }
+    } catch (e) {
+        console.error("Gagal memproses data server:", e);
+    }
+    updateSidebarSemester();
+    render();
+}
+
+// --- MASUKKAN URL APPS SCRIPT ANDA DI SINI ---
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyE1oiGNxRN8s5YxNZ6VJd06EzKSV1-GYMshJCRKzdKpom6-Jx07G5zCAz-UquexNW1Jg/exec'; 
+
+async function loadData() {
+    toast("Menghubungkan ke server...");
+    try {
+        let response = await fetch(SCRIPT_URL, { redirect: 'follow' });
+        if (!response.ok) throw new Error("Gagal mengambil data dari URL");
+        
+        // Ambil respon sebagai teks terlebih dahulu untuk validasi
+        let textData = await response.text();
+        let serverData;
+        try {
+            serverData = JSON.parse(textData);
+        } catch(e) {
+            throw new Error("Respon server bukan JSON. Pastikan Web App diset ke 'Anyone'.");
+        }
+        
+        processServerData(serverData);
+        window.rdmDataReady = true;
+        if (window.refreshLoginAvailability) window.refreshLoginAvailability();
+    } catch(e) {
+        console.error("Gagal memuat data server:", e.message);
+        useLocalData();
+        updateSidebarSemester();
+        render();
+        toast("Mode offline: Menggunakan data lokal");
+        window.rdmDataReady = true;
+        if (window.refreshLoginAvailability) window.refreshLoginAvailability();
+    }
+}
+
+async function save() {
+    try {
+        localStorage.setItem("rdm_mi_data", JSON.stringify(db));
+    } catch(e) {}
+    
+    updateSidebarSemester();
+
+    try {
+        toast("Menyimpan ke server...");
+        let response = await fetch(SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(db)
+        });
+        
+        // Ambil respon sebagai teks terlebih dahulu untuk validasi
+        let textResult = await response.text();
+        let result;
+        try {
+            result = JSON.parse(textResult);
+        } catch(e) {
+            throw new Error("Gagal mengurai respon server saat menyimpan.");
+        }
+        
+        if (result && result.status === "success") {
+            console.log("Data berhasil disimpan ke Database.");
+            return true;
+        }
+        throw new Error((result && result.message) || "Server tidak mengonfirmasi penyimpanan.");
+    } catch(e) {
+        console.error("Error menyimpan data:", e.message);
+        toast("Gagal menyimpan ke server: " + e.message);
+        return false;
+    }
+}
+
+function go(p){
+    page=p;
+    currentSort = { col: '', asc: true };
+    document.querySelectorAll(".navitem[data-page]").forEach(n=>n.classList.toggle("active",n.dataset.page===p));
+    
+    if(titles[p]) {
+        $("#title").textContent=titles[p][0];
+        $("#subtitle").textContent=titles[p][1];
+        $("#crumb").textContent=titles[p][0];
+    }
+    
+    $("#quickAdd").classList.toggle("hidden",["dashboard","profil","rapor_akademik","rapor_tahfidz","backup","pengguna","nilai"].includes(p));
+    render();
+}
+
+function card(title,body){return `<section class="card"><div class="cardhead">${title}</div><div class="cardbody">${body}</div></section>`}
+
+const titles={
+    dashboard:["Dashboard","Ringkasan pengelolaan rapor digital madrasah"],
+    profil:["Profil Madrasah","Identitas lembaga dan pengaturan semester"],
+    kelas:["Kelas & Rombel","Kelola rombongan belajar dan wali kelas"],
+    guru:["Data Guru","Kelola tenaga pendidik madrasah"],
+    siswa:["Data Siswa","Kelola peserta didik dan rombongan belajar"],
+    mapel_reguler:["Mapel Reguler","Kelola mata pelajaran kelompok PAI, Umum, dan Muatan Lokal"],
+    mapel_tahfidz:["Mapel Tahfidz","Kelola daftar target hafalan dan Murojaah Juz"],
+    nilai:["Input Nilai","Pengaturan Guru Mata Pelajaran pengisi nilai per kelas"],
+    rapor_akademik:["Rapor Akademik","Pratinjau dan cetak laporan hasil belajar akademik"],
+    rapor_tahfidz:["Rapor Tahfidz","Pratinjau dan cetak laporan hafalan (Baru & Murojaah)"],
+    legger_nilai:["Legger Nilai","Pratinjau dan cetak rekapitulasi nilai kelas (Legger)"],
+    pengguna:["Admin Aplikasi","Pengaturan pengguna aplikasi"],
+    backup:["Backup & Restore","Simpan atau pulihkan data aplikasi"]
+};
+
+function renderBase(){
+    let c=$("#content");
+    if(!c) return;
+    if(page==="dashboard"){c.innerHTML=dashboard();return}
+    if(page==="profil"){c.innerHTML=profile();return}
+    if(page==="backup"){c.innerHTML=backup();return}
+    if(page==="pengguna"){c.innerHTML=users();return}
+    if(page==="rapor_akademik"){c.innerHTML=report('akademik');return}
+    if(page==="rapor_tahfidz"){c.innerHTML=report('tahfidz');return}
+    if(page==="legger_nilai"){c.innerHTML=leggerPage(); setTimeout(updateLeggerFilter, 100); return}
+    if(page==="nilai"){c.innerHTML=grades();return}
+    c.innerHTML=tablePage(page);
+}
+
+function dashboard(){
+    let monitoring=currentUser&&currentUser.role==='admin'?adminRaportMonitoring():'';
+    let logoSrc = (db.profil && db.profil.logo) ? db.profil.logo : 'https://via.placeholder.com/90?text=Logo';
+    let nama = esc(db.profil && db.profil.nama);
+    let alamat = esc(db.profil && db.profil.alamat);
+    let semester = esc(db.profil && db.profil.semester);
+    let tahun = esc(db.profil && db.profil.tahun);
+    let nsm = esc(db.profil && db.profil.nsm);
+    let npsn = esc(db.profil && db.profil.npsn);
+    
+    return `<div class="notice"><h3>Info Penggunaan</h3><p>Selamat datang di Rapor Digital Madrasah. Kelola data siswa, guru, mata pelajaran, nilai, lalu siapkan rapor untuk dicetak.</p></div><div class="row"><section class="card"><div class="cardbody"><div style="color:#7e8ca0">Jumlah Siswa</div><div style="font-size:30px;font-weight:600">${(db.siswa||[]).length}</div><span class="pill">Peserta didik</span></div></section><section class="card"><div class="cardbody"><div style="color:#7e8ca0">Jumlah Guru</div><div style="font-size:30px;font-weight:600">${(db.guru||[]).length}</div><span class="pill">Tenaga pendidik</span></div></section><section class="card"><div class="cardbody"><div style="color:#7e8ca0">Rombel</div><div style="font-size:30px;font-weight:600">${(db.kelas||[]).length}</div><span class="pill">Kelas aktif</span></div></section><section class="card"><div class="cardbody"><div style="color:#7e8ca0">Mata Pelajaran</div><div style="font-size:30px;font-weight:600">${(db.mapel_reguler||[]).length + (db.mapel_tahfidz||[]).length}</div><span class="pill">Reguler & Tahfidz</span></div></section></div>${monitoring}<div class="grid"><div>${card("Profil Madrasah",`<div style="text-align:center"><img src="${logoSrc}" style="width:90px;height:90px;border-radius:50%;object-fit:cover;margin:0 auto 12px;display:block;border:2px solid var(--line);"></div><h2 style="text-align:center;font-size:16px;margin:0">${nama}</h2><p style="text-align:center;color:#8794a7;margin-top:4px">${alamat}</p><div class="actions"><button class="secondary" onclick="go('profil')">Lihat Profil</button></div>`)}</div><div>${card("Akses Cepat",`<div class="row"><button onclick="go('siswa')">♧ Data Siswa</button><button onclick="go('nilai')">▧ Input Nilai</button><button class="green" onclick="go('rapor_akademik')">▣ Cetak Rapor</button><button class="secondary" onclick="go('guru')">♙ Data Guru</button></div>`)}${card("Aktivitas Terakhir",`<div class="data-row"><span>Semester aktif</span><span>${semester}${tahun}</span></div><div class="data-row"><span>Identitas lembaga</span><span>${nsm} • NPSN ${npsn}</span></div><div class="data-row"><span>Status Server</span><span><span class="pill">Tersinkronisasi</span></span></div>`)}</div></div>`
+}
+function angkaTerbilang(n){
+  const angka=['nol','satu','dua','tiga','empat','lima','enam','tujuh','delapan','sembilan','sepuluh','sebelas'];
+  n=Math.round(Number(n)||0);
+  if(n<12)return angka[n];
+  if(n<20)return angka[n-10]+' belas';
+  if(n<100)return angka[Math.floor(n/10)]+' puluh'+(n%10?' '+angka[n%10]:'');
+  if(n<200)return 'seratus'+(n-100?' '+angkaTerbilang(n-100):'');
+  if(n<1000)return angka[Math.floor(n/100)]+' ratus'+(n%100?' '+angkaTerbilang(n%100):'');
+  if(n<2000)return 'seribu'+(n-1000?' '+angkaTerbilang(n-1000):'');
+  if(n<1000000)return angkaTerbilang(Math.floor(n/1000))+' ribu'+(n%1000?' '+angkaTerbilang(n%1000):'');
+  if(n<1000000000)return angkaTerbilang(Math.floor(n/1000000))+' juta'+(n%1000000?' '+angkaTerbilang(n%1000000):'');
+  if(n<1000000000000)return angkaTerbilang(Math.floor(n/1000000000))+' miliar'+(n%1000000000?' '+angkaTerbilang(n%1000000000):'');
+  return angkaTerbilang(Math.floor(n/1000000000000))+' triliun'+(n%1000000000000?' '+angkaTerbilang(n%1000000000000):'');
+}
+function terbilangNilai(value){
+  const raw=String(value==null?'':value).trim().replace(',','.');
+  if(!raw)return '';
+  const num=Number(raw); if(!Number.isFinite(num))return '';
+  const neg=num<0?'minus ':'';
+  const abs=Math.abs(num);
+  const intPart=Math.floor(abs);
+  let result=neg+angkaTerbilang(intPart);
+  let dec=raw.includes('.')?raw.split('.')[1].replace(/[^0-9]/g,''):'';
+  dec=dec.replace(/0+$/,'');
+  if(dec) result+=' koma '+dec.split('').map(d=>angkaTerbilang(Number(d))).join(' ');
+  return result.charAt(0).toUpperCase()+result.slice(1);
+}
+function studentNism(student){
+  if(!student) return '';
+  return String(student.nism ?? student.nis ?? '').trim();
+}
+function studentIdentityKey(student){
+  if(!student) return '';
+  const nism=studentNism(student);
+  if(nism) return 'nism:'+norm(nism);
+  if(student.id!=null) return 'id:'+String(student.id);
+  return 'nama:'+norm(student.nama)+'|kelas:'+norm(student.kelas);
+}
+function resolveStudentRef(ref, kelasHint){
+  const list=db.siswa||[];
+  if(ref && typeof ref==='object' && ref.id!=null){
+    const byId=list.find(s=>String(s.id)===String(ref.id));
+    if(byId) return byId;
+  }
+  if(ref!=null && (typeof ref==='number' || /^\d+$/.test(String(ref)))){
+    const byId=list.find(s=>String(s.id)===String(ref));
+    if(byId) return byId;
+  }
+  if(typeof ref==='string'){
+    const raw=ref.trim();
+    const byNism=list.find(s=>studentNism(s) && norm(studentNism(s))===norm(raw));
+    if(byNism && (!kelasHint || norm(byNism.kelas)===norm(kelasHint))) return byNism;
+    const byId=list.find(s=>String(s.id)===raw);
+    if(byId && (!kelasHint || norm(byId.kelas)===norm(kelasHint))) return byId;
+    const byName=list.find(s=>norm(s.nama)===norm(raw) && (!kelasHint || norm(s.kelas)===norm(kelasHint)));
+    if(byName) return byName;
+  }
+  return null;
+}
+function gradeBelongsToStudent(n, student){
+  if(!n || !student) return false;
+  if(n.siswaId!=null && student.id!=null && String(n.siswaId)===String(student.id)) return true;
+  const nNism=String(n.nism ?? n.nis ?? '').trim();
+  const sNism=studentNism(student);
+  if(nNism && sNism && norm(nNism)===norm(sNism)) return true;
+  const sameClass=norm(n.kelas||'')===norm(student.kelas||'');
+  const sameName=norm(n.siswa||'')===norm(student.nama||'');
+  return sameClass && sameName;
+}
+function gradesForStudent(student){
+  if(!student) return [];
+  return (db.nilai||[]).filter(n=>gradeBelongsToStudent(n,student));
+}
+
+function migrateGradeStudentIdentity(){
+  (db.nilai||[]).forEach(n=>{
+    if(n.siswaId!=null && (n.nism||n.nis)) return;
+    const candidate=(db.siswa||[]).find(s=>norm(s.nama)===norm(n.siswa||'') && norm(s.kelas)===norm(n.kelas||''));
+    if(candidate){
+      n.siswaId=candidate.id;
+      n.nism=studentNism(candidate);
+      n.nis=candidate.nis||studentNism(candidate);
+    }
+  });
+}
+
+function getLeggerStudentRanking(kelas, jenis, kategori){
+  const tipe=jenis==='tahfidz'?'tahfidz':'reguler';
+  const siswa=(db.siswa||[]).filter(s=>norm(s.kelas)===norm(kelas));
+  const pengampuKelas=(db.pengampu||[]).filter(p=>norm(p.kelas)===norm(kelas)&&p.guru&&norm(p.guru)!=='-'&&norm(p.tipe)===tipe);
+  const active=new Set(pengampuKelas.map(p=>p.mapel));
+  let mapelList=[];
+  if(jenis==='akademik'){
+    mapelList=(db.mapel_reguler||[]).filter(m=>active.has(m.nama)).map(m=>m.nama);
+    const order=['PAI','Umum','Muatan Lokal'];
+    mapelList.sort((a,b)=>{
+      const ga=(db.mapel_reguler||[]).find(m=>m.nama===a)?.kelompok||'';
+      const gb=(db.mapel_reguler||[]).find(m=>m.nama===b)?.kelompok||'';
+      return order.indexOf(ga)-order.indexOf(gb);
+    });
+  }else{
+    const cat=kategori||'';
+    mapelList=(db.mapel_tahfidz||[]).filter(m=>active.has(m.surah)&&(!cat||m.kelompok===cat)).map(m=>m.surah);
+  }
+  const rows=siswa.map(st=>{
+    const grades=gradesForStudent(st);
+    const vals=mapelList.map(m=>{
+      const n=grades.find(x=>norm(x.mapel)===norm(m));
+      return n?Math.round((+n.pengetahuan + +n.keterampilan)/2)||0:0;
+    });
+    const jumlah=vals.reduce((a,b)=>a+b,0); const rerata=mapelList.length?jumlah/mapelList.length:0;
+    return {studentId:st.id,nism:studentNism(st),nama:st.nama,jumlah,rerata};
+  });
+  rows.sort((a,b)=>b.jumlah-a.jumlah||b.rerata-a.rerata||a.nama.localeCompare(b.nama)||String(a.nism).localeCompare(String(b.nism)));
+  const out={};
+  rows.forEach((r,i)=>{
+    const st=siswa.find(s=>String(s.id)===String(r.studentId));
+    if(st){
+      out[studentIdentityKey(st)]=i+1;
+      out['id:'+String(st.id)]=i+1;
+      const nism=studentNism(st); if(nism) out['nism:'+norm(nism)]=i+1;
+    }
+  });
+  return {ranks:out,total:siswa.length,mapelCount:mapelList.length};
+}
+async function resetRaporKelas(kelas){
+  if(!currentUser||currentUser.role!=='admin') return false;
+  ensureNewFields();
+  const classNorm=norm(kelas);
+  const semester=currentSemester(), tahun=currentYear();
+
+  // Ambil seluruh identitas siswa yang benar-benar berada di kelas tersebut.
+  const classStudents=(db.siswa||[]).filter(st=>norm(st.kelas)===classNorm);
+  const studentIds=new Set(classStudents.map(st=>String(st.id||'')));
+  const studentNames=new Set(classStudents.map(st=>norm(st.nama)));
+
+  // Ambil seluruh pengampu pada kelas ini. Ini penting untuk data lama
+  // yang menyimpan nilai/pengiriman tanpa field kelas.
+  const classAssignments=(db.pengampu||[]).filter(a=>norm(a.kelas)===classNorm && a.guru && norm(a.guru)!=='-');
+  const assignmentKeys=new Set(classAssignments.map(a=>[
+    norm(a.mapel), norm(a.tipe), norm(a.guru)
+  ].join('|')));
+  const assignmentMapelTipe=new Set(classAssignments.map(a=>[
+    norm(a.mapel), norm(a.tipe)
+  ].join('|')));
+
+  const before={
+    nilai:(db.nilai||[]).length,
+    kirim:(db.pengirimanNilai||[]).length,
+    wali:(db.waliKelas||[]).length,
+    kunci:(db.raporKunci||[]).length
+  };
+
+  // 1) Hapus semua nilai periode aktif yang terkait kelas, baik data baru
+  //    (punya kelas/siswaId) maupun data lama yang hanya punya nama siswa.
+  db.nilai=(db.nilai||[]).filter(n=>{
+    const samePeriod=(!n.semester||String(n.semester)===semester)&&(!n.tahun||String(n.tahun)===tahun);
+    if(!samePeriod) return true;
+    const sameClass=norm(n.kelas)===classNorm;
+    const sameStudent=studentIds.has(String(n.siswaId||'')) || studentNames.has(norm(n.siswa));
+    const sameAssignment=assignmentMapelTipe.has([norm(n.mapel),norm(n.tipe||'reguler')].join('|'));
+    return !(sameClass || sameStudent || (sameAssignment && sameStudent));
+  });
+
+  // 2) Hapus status pengiriman. Data lama yang tidak menyimpan kelas tetap
+  //    dapat ditemukan melalui kombinasi Guru + Mapel + Tipe pengampu kelas.
+  db.pengirimanNilai=(db.pengirimanNilai||[]).filter(n=>{
+    const samePeriod=(!n.semester||String(n.semester)===semester)&&(!n.tahun||String(n.tahun)===tahun);
+    if(!samePeriod) return true;
+    const sameClass=norm(n.kelas)===classNorm;
+    const key=[norm(n.mapel),norm(n.tipe||'reguler'),norm(n.guru)].join('|');
+    return !(sameClass || assignmentKeys.has(key));
+  });
+
+  // 3) Hapus seluruh isian Wali Kelas pada siswa kelas tersebut, termasuk
+  //    data lama yang tidak memiliki field kelas tetapi punya siswa/siswaId.
+  db.waliKelas=(db.waliKelas||[]).filter(w=>{
+    const samePeriod=(!w.semester||String(w.semester)===semester)&&(!w.tahun||String(w.tahun)===tahun);
+    if(!samePeriod) return true;
+    const sameClass=norm(w.kelas)===classNorm;
+    const sameStudent=studentIds.has(String(w.siswaId||'')) || studentNames.has(norm(w.siswa));
+    return !(sameClass || sameStudent);
+  });
+
+  // 4) Hapus status kunci agar kelas benar-benar kembali seperti awal.
+  db.raporKunci=(db.raporKunci||[]).filter(x=>{
+    return !(norm(x.kelas)===classNorm && String(x.semester||semester)===semester && String(x.tahun||tahun)===tahun);
+  });
+
+  const removed={
+    nilai:before.nilai-db.nilai.length,
+    kirim:before.kirim-db.pengirimanNilai.length,
+    wali:before.wali-db.waliKelas.length,
+    kunci:before.kunci-db.raporKunci.length
+  };
+  const totalRemoved=removed.nilai+removed.kirim+removed.wali;
+
+  // Simpan dahulu dan tunggu POST selesai. Ini penting agar ketika Admin
+  // langsung membuka akun Guru/reload halaman, data server sudah benar-benar
+  // kembali kosong, bukan masih membaca data lama.
+  const saved=await save();
+  if(!saved){
+    render();
+    toast('Reset gagal disimpan ke server. Perubahan lokal tidak dianggap berhasil.');
+    return false;
+  }
+  render();
+
+  // Verifikasi lokal setelah reset: progres harus 0% untuk komponen yang
+  // memang memiliki pengaturan pada kelas tersebut.
+  const after=kelasMonitoringPercent(kelas);
+  const success=after.reguler===0 && after.tahfidz===0 && after.wali===0 && !isRaporKelasLocked(kelas);
+  if(success){
+    if(totalRemoved>0){
+      toast('Reset berhasil. Data nilai, status kirim, dan isian rapor kelas '+kelas+' sudah kosong kembali seperti awal.');
+    }else{
+      toast('Data Rapor kelas '+kelas+' sudah kosong. Tidak ada data yang perlu dihapus.');
+    }
+  }else{
+    toast('Reset lokal selesai, tetapi masih ada data yang terbaca pada monitoring kelas '+kelas+'. Silakan ulangi Reset atau periksa koneksi server.');
+  }
+  return success;
+}
+
+async function confirmResetRaporKelas(kelas){
+  if(!currentUser||currentUser.role!=='admin')return;
+  if(confirm('RESET RAPOR KELAS '+kelas+'?\n\nSemua nilai Guru, status pengiriman nilai, dan isian Wali Kelas pada kelas ini akan dikosongkan. Data Guru, Siswa, Mapel, Pengampu, dan pengaturan kelas tidak dihapus.')){
+    await resetRaporKelas(kelas);
+  }
+}
+function adminRaportMonitoring(){const classes=db.kelas||[];if(!classes.length)return '';const rows=classes.map(k=>{const m=kelasMonitoringPercent(k.nama);const locked=isRaporKelasLocked(k.nama);return `<tr><td>${esc(k.nama)}</td><td>${m.reguler}%</td><td>${m.tahfidz}%</td><td>${m.wali}%</td><td><b>${m.total}%</b></td><td style="text-align:center;white-space:nowrap"><button class="danger" type="button" onclick="confirmResetRaporKelas('${esc(k.nama)}')">↻ Reset</button> <button class="${locked?'secondary':'green'}" type="button" ${locked?'disabled':''} onclick="confirmLockRaporKelas('${esc(k.nama)}')">${locked?'🔒 Terkunci':'🔒 Kunci'}</button></td></tr>`;}).join('');return `<section class="card"><div class="cardhead">Monitoring Pengumpulan Rapot Per Kelas</div><div class="cardbody"><div class="tablewrap"><table><thead><tr><th>Kelas</th><th>Reguler Terkirim</th><th>Tahfidz Terkirim</th><th>Wali Kelas</th><th>Total</th><th>Aksi</th></tr></thead><tbody>${rows}</tbody></table></div><p class="small-muted">Tombol Kunci aktif hanya jika progres kelas mencapai 100%. Setelah dikunci, Guru tidak dapat mengubah nilai.</p></div></section>`;}
+function profile(){
+    let p=db.profil||{};
+    let logoSrc = p.logo ? p.logo : 'https://via.placeholder.com/90?text=Logo';
+    return `<div class="grid"><div class="profilecol">${card("Profil Lembaga",`<div class="profile"><img id="logoPreview" src="${logoSrc}" style="width:90px;height:90px;border-radius:50%;object-fit:contain;background:#f6f8fa;border:1px solid #d4d9e1;margin:0 auto 12px;display:block;"><h2>${esc(p.nama)}</h2><p>Administrator Madrasah</p><div class="actions"><input type="file" id="logoInput" accept="image/*" style="display:none" onchange="processLogo(event)"><button class="secondary" onclick="document.getElementById('logoInput').click()">Ubah Logo</button></div></div>`)}${card("Semester & Tanggal",`<div class="field"><label>Semester</label><select id="psemester"><option ${p.semester==="Ganjil"?"selected":""}>Ganjil</option><option ${p.semester==="Genap"?"selected":""}>Genap</option></select></div><div class="field"><label>Tahun Pelajaran</label><input id="ptahun" value="${esc(p.tahun)}"></div><div class="field"><label>Tanggal Cetak Rapor</label><input id="ptglCetak" value="${esc(p.tglCetak||'16 Mei 2026')}"></div><button onclick="saveProfile()">Simpan Pengaturan</button>`)}</div><div>${card("Identitas Madrasah",`<div class="field"><label>Nama Madrasah</label><input id="pnama" value="${esc(p.nama)}"></div><div class="row"><div class="field"><label>NSM</label><input id="pnsm" value="${esc(p.nsm)}"></div><div class="field"><label>NPSN</label><input id="pnpsn" value="${esc(p.npsn)}"></div></div><div class="field"><label>Alamat</label><input id="palamat" value="${esc(p.alamat)}"></div><div class="row"><div class="field"><label>Kecamatan</label><input id="pkec" value="${esc(p.kecamatan)}"></div><div class="field"><label>Kabupaten/Kota</label><input id="pkota" value="${esc(p.kota)}"></div></div><div class="field"><label>Provinsi</label><input id="pprov" value="${esc(p.provinsi)}"></div><div class="field"><label>Kepala Madrasah</label><input id="pkepala" value="${esc(p.kepala)}"></div><div class="field"><label>Tanda Tangan Kepala Madrasah (.png transparan)</label><div class="actions"><input type="file" id="ttdKepalaInput" accept="image/png" style="display:none" onchange="processTtdKepala(event)"><button class="secondary" type="button" onclick="document.getElementById('ttdKepalaInput').click()">Upload</button><button class="danger" type="button" onclick="hapusTtdKepala()">Hapus</button></div><div style="margin-top:8px;text-align:center;min-height:60px">${p.ttdKepala?`<img src="${p.ttdKepala}" style="max-width:220px;max-height:90px;object-fit:contain">`:'<span class="small-muted">Belum ada tanda tangan</span>'}</div></div><button onclick="saveProfile()">Simpan Perubahan</button>`)}</div></div>`
+}
+
+function processLogo(e) {
+    let file = e.target.files[0];
+    if (!file) return;
+    let reader = new FileReader();
+    reader.onload = function(evt) {
+        db.profil.logo = evt.target.result;
+        document.getElementById("logoPreview").src = evt.target.result;
+        save();
+        toast("Logo berhasil diperbarui");
+    }
+    reader.readAsDataURL(file);
+}
+
+function processTtdKepala(e){const file=e.target.files&&e.target.files[0];if(!file)return;if(file.type!=='image/png'){toast('Tanda tangan harus berupa file PNG.');e.target.value='';return;}const reader=new FileReader();reader.onload=ev=>{db.profil.ttdKepala=ev.target.result;save();render();toast('Tanda tangan Kepala Madrasah berhasil diupload.');};reader.readAsDataURL(file);}
+function hapusTtdKepala(){if(!confirm('Hapus tanda tangan Kepala Madrasah?'))return;db.profil.ttdKepala='';save();render();toast('Tanda tangan Kepala Madrasah dihapus.');}
+
+function saveProfile(){
+    let p=db.profil;
+    for(let [k,id] of Object.entries({nama:"pnama",nsm:"pnsm",npsn:"pnpsn",alamat:"palamat",kecamatan:"pkec",kota:"pkota",provinsi:"pprov",kepala:"pkepala"})){if($("#"+id))p[k]=$("#"+id).value}
+    if($("#psemester"))p.semester=$("#psemester").value;
+    if($("#ptahun"))p.tahun=$("#ptahun").value;
+    if($("#ptglCetak"))p.tglCetak=$("#ptglCetak").value;
+    save();render();toast("Profil berhasil disimpan");
+}
+
+const configs={
+    guru:{label:"Guru",fields:[["pegid","PegID"],["nama","Nama Guru"],["nip","NIP / NIK"],["jabatan","Jabatan"]]},
+    kelas:{label:"Kelas / Rombel",fields:[["nama","Nama Rombel"],["tingkat","Tingkat"],["wali","Wali Kelas"]]},
+    siswa:{label:"Siswa",fields:[["nis","NIS"],["nisn","NISN"],["nama","Nama Lengkap"],["kelas","Kelas"],["jk","Jenis Kelamin"]]},
+    mapel_reguler:{label:"Mapel Reguler",fields:[["nama","Nama Mata Pelajaran"],["kelompok","Kategori (Kelompok)"]]},
+    mapel_tahfidz:{label:"Mapel Tahfidz",fields:[["surah","Nama Surah / Target"],["kelompok","Kategori Juz"]]}
+};
+
+function tablePage(key){
+    let cfg=configs[key],arr=db[key]||[];
+    let filterHTML = "";
+    if (key === "siswa") {
+        let options = (db.kelas||[]).map(c => `<option value="${esc(c.nama)}">${esc(c.nama)}</option>`).join("");
+        filterHTML = `<select id="filterSelect" onchange="filterTable()"><option value="">-- Semua Kelas --</option>${options}</select>`;
+    } else if (key === "mapel_tahfidz") {
+        let options = ["Murojaah Juz 1", "Murojaah Juz 2", "Murojaah Juz 3", "Murojaah Juz 4", "Murojaah Juz 30", "Juz 1", "Juz 2", "Juz 3", "Juz 4", "Juz 30"].map(c => `<option value="${c}">${c}</option>`).join("");
+        filterHTML = `<select id="filterSelect" onchange="filterTable()"><option value="">-- Semua Kategori Juz --</option>${options}</select>`;
+    }
+
+    return `<section class="card">
+        <div class="cardbody">
+            <div class="toolbar">
+                <input id="search" placeholder="Cari ${cfg.label.toLowerCase()}..." oninput="filterTable()">
+                ${filterHTML}
+                <span class="spacer"></span>
+                <input type="file" id="importExcel_${key}" accept=".xlsx, .xls, .csv" style="display:none" onchange="handleImportExcel(event, '${key}')">
+                <button class="secondary" onclick="document.getElementById('importExcel_${key}').click()">📥 Import Excel</button>
+                <button onclick="openForm('${key}')">＋ Tambah ${cfg.label}</button>
+            </div>
+            <div class="tablewrap">
+                <table>
+                    <thead><tr>${cfg.fields.map(f=>`<th onclick="sortTable('${key}','${f[0]}')" title="Klik untuk mengurutkan">${f[1]} ↕</th>`).join("")}<th>Aksi</th></tr></thead>
+                    <tbody id="tbody">${rows(key,arr)}</tbody>
+                </table>
+            </div>
+            <div id="rowCounter" class="data-row"><span>Total data</span><span>${arr.length} ${cfg.label.toLowerCase()}</span></div>
+        </div>
+    </section>`;
+}
+function rows(key,arr){let cfg=configs[key];if(!arr.length)return `<tr><td colspan="${cfg.fields.length+1}" class="empty">Tidak ada data.</td></tr>`;return arr.map(o=>`<tr>${cfg.fields.map(f=>`<td>${f[0]==="jk"?(o.jk==="P"?"Perempuan":"Laki-laki"):esc(o[f[0]])}</td>`).join("")}<td><button class="secondary" onclick="openForm('${key}',${o.id})">Edit</button> <button class="danger" onclick="del('${key}',${o.id})">Hapus</button></td></tr>`).join("")}
+
+function sortTable(key, col) {
+    if (currentSort.col === col) {
+        currentSort.asc = !currentSort.asc;
+    } else {
+        currentSort.col = col;
+        currentSort.asc = true;
+    }
+    filterTable();
+}
+
+function filterTable(){
+    let q = $("#search") ? $("#search").value.toLowerCase() : "";
+    let filterVal = $("#filterSelect") ? $("#filterSelect").value : "";
+    let filteredArr = (db[page]||[]).filter(o => {
+        let matchSearch = Object.values(o).join(" ").toLowerCase().includes(q);
+        let matchDropdown = true;
+        if (page === 'siswa' && filterVal !== "") {
+            matchDropdown = o.kelas === filterVal;
+        } else if (page === 'mapel_tahfidz' && filterVal !== "") {
+            matchDropdown = o.kelompok === filterVal;
+        }
+        return matchSearch && matchDropdown;
+    });
+
+    if (currentSort.col) {
+        filteredArr.sort((a, b) => {
+            let valA = a[currentSort.col] || "";
+            let valB = b[currentSort.col] || "";
+            if(!isNaN(valA) && !isNaN(valB)) return currentSort.asc ? Number(valA) - Number(valB) : Number(valB) - Number(valA);
+            return currentSort.asc ? String(valA).localeCompare(String(valB)) : String(valB).localeCompare(String(valA));
+        });
+    }
+
+    $("#tbody").innerHTML = rows(page, filteredArr);
+    if($("#rowCounter")) $("#rowCounter").innerHTML = `<span>Total data</span><span>${filteredArr.length} baris ditampilkan</span>`;
+}
+
+function handleImportExcel(e, key) {
+    let file = e.target.files[0];
+    if (!file) return;
+    let reader = new FileReader();
+    reader.onload = function(evt) {
+        try {
+            let data = new Uint8Array(evt.target.result);
+            let workbook = XLSX.read(data, {type: 'array'});
+            let firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+            let rows = XLSX.utils.sheet_to_json(firstSheet, {header: 1});
+            if(rows.length < 2) { toast("Data kosong. Pastikan baris 1 adalah judul kolom."); return; }
+            let cfg = configs[key];
+            let newId = Math.max(0, ...(db[key]||[]).map(x => x.id || 0));
+            let successCount = 0;
+            for(let i=1; i < rows.length; i++) {
+                let cols = rows[i];
+                if(!cols || cols.length === 0 || cols.every(c => !c)) continue;
+                let obj = {id: ++newId};
+                cfg.fields.forEach((f, idx) => {
+                    obj[f[0]] = cols[idx] !== undefined ? String(cols[idx]).trim() : "";
+                });
+                if(!db[key]) db[key] = [];
+                db[key].push(obj);
+                successCount++;
+            }
+            save(); render(); toast(successCount + " data berhasil diimpor!");
+        } catch (err) { console.error(err); toast("Gagal memproses file Excel"); }
+    };
+    reader.readAsArrayBuffer(file);
+    e.target.value = ''; 
+}
+
+function openFormBase(key,id=null){
+    editing={key,id};
+    let cfg=configs[key],obj=id?(db[key]||[]).find(x=>x.id===id):{};
+    let fields = cfg.fields.map(([k,l]) => {
+        if(k === "kelas" && key === "siswa") {
+            let options = (db.kelas||[]).length ? (db.kelas||[]).map(c=>`<option ${obj[k]===c.nama?"selected":""}>${esc(c.nama)}</option>`).join("") : `<option value="">-- Buat Kelas Dulu --</option>`;
+            return `<div class="field"><label>${l}</label><select name="${k}" required>${options}</select></div>`;
+        }
+        if(k === "wali" && key === "kelas") {
+            let options = (db.guru||[]).length ? (db.guru||[]).map(g=>`<option ${obj[k]===g.nama?"selected":""}>${esc(g.nama)}</option>`).join("") : `<option value="">-- Tambah Guru Dulu --</option>`;
+            return `<div class="field"><label>${l}</label><select name="${k}" required>${options}</select></div>`;
+        }
+        if(k === "jk") {
+            return `<div class="field"><label>${l}</label><select name="${k}"><option value="L" ${obj[k]==="L"?"selected":""}>Laki-laki</option><option value="P" ${obj[k]==="P"?"selected":""}>Perempuan</option></select></div>`;
+        }
+        if(k === "kelompok") {
+            let options = "";
+            if(key === "mapel_reguler") {
+                options = ["PAI", "Umum", "Muatan Lokal"].map(c=>`<option ${obj[k]===c?"selected":""}>${c}</option>`).join("");
+            } else if(key === "mapel_tahfidz") {
+                options = ["Murojaah Juz 1", "Murojaah Juz 2", "Murojaah Juz 3", "Murojaah Juz 4", "Murojaah Juz 30", "Juz 1", "Juz 2", "Juz 3", "Juz 4", "Juz 30"].map(c=>`<option ${obj[k]===c?"selected":""}>${c}</option>`).join("");
+            }
+            if(options) return `<div class="field"><label>${l}</label><select name="${k}" required>${options}</select></div>`;
+        }
+        return `<div class="field"><label>${l}</label><input name="${k}" value="${esc(obj[k]||"")}" required></div>`
+    }).join("");
+    
+    $("#modalroot").innerHTML=`<div class="modalback" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modalhead">${id?"Edit":"Tambah"} ${cfg.label}<button class="xbtn" onclick="closeModal()">×</button></div><form onsubmit="submitForm(event)"><div class="modalbody">${fields}</div><div class="modalfoot"><button type="button" class="secondary" onclick="closeModal()">Batal</button><button type="submit">Simpan</button></div></form></div></div>`;
+}
+
+function submitFormBase(e){
+    e.preventDefault();
+    let {key,id}=editing,fd=new FormData(e.target),obj=Object.fromEntries(fd.entries());
+    if(!db[key]) db[key]=[];
+    if(id){
+        let target = db[key].find(x=>x.id===id);
+        if(target) Object.assign(target,obj);
+    } else {
+        obj.id=Math.max(0,...db[key].map(x=>x.id||0))+1;
+        db[key].push(obj);
+    }
+    save();closeModal();render();toast("Data berhasil disimpan");
+}
+function closeModal(){$("#modalroot").innerHTML=""}
+function delBase(key,id){
+    if(!confirm("Hapus data ini?"))return;
+    if(db[key]) db[key]=db[key].filter(x=>x.id!==id);
+    save();render();toast("Data dihapus");
+}
+
+function grades(){
+    return `<section class="card">
+        <div class="cardhead" style="background:#fcfdff;">Pengaturan Guru Pengisi Nilai Kelas</div>
+        <div class="cardbody">
+            <div class="field">
+                <label>Pilih Kelas</label>
+                <select id="kelasSelect" onchange="initInputNilaiUI()" style="border:1px solid var(--blue);">
+                    <option value="">-- Pilih Kelas --</option>
+                    ${(db.kelas||[]).map(k=>`<option value="${esc(k.nama)}">${esc(k.nama)}</option>`).join("")}
+                </select>
+            </div>
+            
+            <div id="filterMapelContainer" class="hidden" style="margin-bottom: 15px; padding: 12px; background: #f8fafc; border-radius: 4px; border: 1px solid var(--line);">
+                <div style="margin-bottom: 8px; font-weight: 600; color:#394b66;">Kategori Mata Pelajaran:</div>
+                <label style="margin-right: 15px; cursor:pointer;"><input type="checkbox" id="cbReguler" onchange="handleCbTipe()" checked> Mapel Reguler</label>
+                <label style="cursor:pointer;"><input type="checkbox" id="cbTahfidz" onchange="handleCbTipe()" checked> Mapel Tahfidz</label>
+                
+                <div id="radioContainer" style="margin-top:12px; padding-top: 12px; border-top: 1px dashed #cbd5e1;">
+                    <div style="margin-bottom: 8px; font-weight: 600; color:#394b66;">Pilihan Pengisian Nilai:</div>
+                    <label style="margin-right: 15px; cursor:pointer;"><input type="radio" name="radioTipe" value="reguler" onchange="updateKategoriDropdown()" checked> Tampilkan Mapel Reguler</label>
+                    <label style="cursor:pointer;"><input type="radio" name="radioTipe" value="tahfidz" onchange="updateKategoriDropdown()"> Tampilkan Mapel Tahfidz</label>
+                </div>
+
+                <div id="kategoriContainer" class="hidden" style="margin-top:12px; padding-top: 12px; border-top: 1px dashed #cbd5e1;">
+                    <div style="margin-bottom: 8px; font-weight: 600; color:#394b66;">Pilih Kategori Mapel:</div>
+                    <select id="kategoriSelect" onchange="renderPengampuTable()" style="width:100%; border:1px solid var(--line); padding:8px; background:white;">
+                    </select>
+                </div>
+            </div>
+            
+            <div id="pengampuTableContainer">
+                <div class="empty">Silakan pilih kelas terlebih dahulu untuk mengatur Guru Pengisi Nilai.</div>
+            </div>
+        </div>
+    </section>`;
+}
+
+function initInputNilaiUI() {
+    let kls = $("#kelasSelect").value;
+    if(!kls) {
+        $("#filterMapelContainer").classList.add("hidden");
+        $("#pengampuTableContainer").innerHTML = `<div class="empty">Silakan pilih kelas terlebih dahulu untuk mengatur Guru Pengisi Nilai.</div>`;
+        return;
+    }
+    $("#filterMapelContainer").classList.remove("hidden");
+    handleCbTipe();
+}
+
+function handleCbTipe() {
+    let reg = $("#cbReguler").checked;
+    let tah = $("#cbTahfidz").checked;
+    let rad = $("#radioContainer");
+    if (reg && tah) {
+        rad.classList.remove("hidden");
+    } else {
+        rad.classList.add("hidden");
+        if (reg) $("input[name='radioTipe'][value='reguler']").checked = true;
+        if (tah) $("input[name='radioTipe'][value='tahfidz']").checked = true;
+    }
+    if (!reg && !tah) {
+        $("#kategoriContainer").classList.add("hidden");
+        $("#pengampuTableContainer").innerHTML = `<div class="empty">Mohon centang setidaknya satu Kategori Mata Pelajaran.</div>`;
+    } else {
+        updateKategoriDropdown();
+    }
+}
+
+function updateKategoriDropdown() {
+    let checkedRadio = document.querySelector("input[name='radioTipe']:checked");
+    let tipe = checkedRadio ? checkedRadio.value : null;
+    if(!tipe) return;
+    
+    let mapelList = tipe === "reguler" ? db.mapel_reguler : db.mapel_tahfidz;
+    if(!mapelList || mapelList.length === 0) {
+        $("#kategoriContainer").classList.add("hidden");
+        $("#pengampuTableContainer").innerHTML = `<div class="empty">Belum ada data mata pelajaran untuk tipe ini.</div>`;
+        return;
+    }
+    let categories = [];
+    mapelList.forEach(m => {
+        if(m.kelompok && categories.indexOf(m.kelompok) === -1) {
+            categories.push(m.kelompok);
+        }
+    });
+    
+    if (categories.length > 0) {
+        $("#kategoriContainer").classList.remove("hidden");
+        let opts = `<option value="">-- Pilih Kategori --</option>` + categories.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join("");
+        $("#kategoriSelect").innerHTML = opts;
+        $("#pengampuTableContainer").innerHTML = `<div class="empty">Silakan pilih Kategori Mapel di atas terlebih dahulu.</div>`;
+    } else {
+        $("#kategoriContainer").classList.add("hidden");
+        $("#kategoriSelect").innerHTML = `<option value="ALL">ALL</option>`;
+        renderPengampuTable();
+    }
+}
+
+function renderPengampuTable() {
+    let kls = $("#kelasSelect").value;
+    if(!kls) return;
+    
+    let checkedRadio = document.querySelector("input[name='radioTipe']:checked");
+    let tipe = checkedRadio ? checkedRadio.value : null;
+    if(!tipe) return;
+    
+    let kategori = $("#kategoriSelect").value;
+    if(!kategori) {
+        $("#pengampuTableContainer").innerHTML = `<div class="empty">Silakan pilih Kategori Mapel di atas terlebih dahulu.</div>`;
+        return;
+    }
+    let mapelList = tipe === "reguler" ? db.mapel_reguler : db.mapel_tahfidz;
+    let mapelKey = tipe === "reguler" ? "nama" : "surah"; 
+    if (kategori !== "ALL") {
+        mapelList = mapelList.filter(m => m.kelompok === kategori);
+    }
+    let rows = mapelList.map(m => {
+        let rawMapel = m[mapelKey];
+        let mName = esc(rawMapel);
+        let assigned = (db.pengampu || []).find(p => p.kelas === kls && p.mapel === rawMapel && p.tipe === tipe);
+        let selGuru = assigned ? assigned.guru : "";
+        let opts = `<option value="">-- Kosong (Tidak Diisi) --</option>` + (db.guru||[]).map(g => `<option value="${esc(g.nama)}" ${selGuru === g.nama ? "selected" : ""}>${esc(g.nama)}</option>`).join("");
+        return `<tr>
+            <td style="font-weight:500;">${mName}</td>
+            <td><select class="guru-select" data-mapel="${esc(rawMapel)}" data-tipe="${tipe}" style="width:100%; border:1px solid #cbd5e1; padding:6px;">${opts}</select></td>
+        </tr>`;
+    }).join("");
+
+    $("#pengampuTableContainer").innerHTML = `
+        <div class="tablewrap" style="margin-bottom: 15px; border: 1px solid var(--line); border-radius:4px;">
+            <table>
+                <thead><tr><th style="width:40%;">Nama Mata Pelajaran / Target</th><th>Nama Guru Pengisi Nilai</th></tr></thead>
+                <tbody>${rows}</tbody>
+            </table>
+        </div>
+        <button class="green" onclick="savePengampu()">💾 Simpan Kategori Ini</button>
+    `;
+}
+
+function savePengampu() {
+    let kls = $("#kelasSelect").value;
+    if(!kls) return;
+    if(!db.pengampu) db.pengampu = [];
+    
+    let checkedRadio = document.querySelector("input[name='radioTipe']:checked");
+    let tipe = checkedRadio ? checkedRadio.value : null;
+    
+    let renderedMapels = [];
+    document.querySelectorAll(".guru-select").forEach(sel => {
+        renderedMapels.push(sel.dataset.mapel);
+    });
+    db.pengampu = db.pengampu.filter(p => !(p.kelas === kls && p.tipe === tipe && renderedMapels.includes(p.mapel)));
+    document.querySelectorAll(".guru-select").forEach(sel => {
+        let guru = sel.value;
+        if(guru) {
+            db.pengampu.push({
+                id: Math.max(0, ...db.pengampu.map(x=>x.id||0)) + 1,
+                kelas: kls,
+                mapel: sel.dataset.mapel,
+                tipe: sel.dataset.tipe,
+                guru: guru
+            });
+        }
+    });
+    save();
+    toast("Pengaturan Guru berhasil disimpan!");
+}
+
+function report(type){
+    let filteredKelas = [];
+    let titleClass = "";
+    
+    if (type === 'akademik') {
+        titleClass = "Rapor Akademik";
+        filteredKelas = [
+            "I Reguler", "II Reguler", "III Reguler", "IV Reguler", "V Reguler", "VI Reguler",
+            "I Tahfidz", "II Tahfidz", "III Tahfidz", "IV Tahfidz", "V Tahfidz", "VI Tahfidz"
+        ];
+    } else if (type === 'tahfidz') {
+        titleClass = "Rapor Tahfidz";
+        filteredKelas = [
+            "I Tahfidz", "II Tahfidz", "III Tahfidz", "IV Tahfidz", "V Tahfidz", "VI Tahfidz"
+        ];
+    }
+    if(teacherMode()) {
+        const own=getWaliClasses();
+        filteredKelas=own.filter(k=>waliHasReportType(type));
+    }
+    
+    let kelasOptions = filteredKelas.map((k,i) => `<option value="${esc(k)}" ${teacherMode()&&i===0?'selected':''}>${esc(k)}</option>`).join("");
+    if(teacherMode() && filteredKelas.length){ setTimeout(()=>renderSiswaListForReport(type),0); }
+    return `<section class="card">
+        <div class="cardhead" style="background:#fcfdff; font-weight:bold;">Menu Cetak ${titleClass}</div>
+        <div class="cardbody no-print">
+            <div class="toolbar" style="margin-bottom:15px;">
+                <label class="${teacherMode()?'hidden':''}" style="font-weight:600;">Pilih Kelas & Rombel:</label>
+                <select id="reportKelas" onchange="renderSiswaListForReport('${type}')" class="${teacherMode()?'hidden':''}" style="border:1px solid var(--blue); min-width:200px;">
+                    <option value="">-- Pilih Kelas & Rombel --</option>
+                    ${kelasOptions}
+                </select>
+                <span class="spacer"></span>
+                <div id="printAllContainer" style="display:flex; gap:5px; flex-wrap:wrap;"></div>
+            </div>
+        </div>
+        <div id="reportContainer">
+            <div class="empty">Silakan pilih Kelas & Rombel di atas terlebih dahulu untuk memunculkan daftar siswa.</div>
+        </div>
+    </section>`;
+}
+
+function renderSiswaListForReportBase(type) {
+    let selectedKelas = $("#reportKelas").value;
+    let container = $("#reportContainer");
+    let btnContainer = $("#printAllContainer");
+
+    if(!selectedKelas) {
+        container.innerHTML = `<div class="empty">Silakan pilih Kelas & Rombel di atas terlebih dahulu untuk memunculkan daftar siswa.</div>`;
+        if(btnContainer) btnContainer.innerHTML = '';
+        return;
+    }
+
+    let listSiswa = (db.siswa||[]).filter(s => s.kelas === selectedKelas);
+    if(listSiswa.length === 0) {
+        container.innerHTML = `<div class="empty">Tidak ada siswa yang terdaftar di kelas ${esc(selectedKelas)}.</div>`;
+        if(btnContainer) btnContainer.innerHTML = '';
+        return;
+    }
+
+    let pengampuKelas = (db.pengampu || []).filter(p => p.kelas === selectedKelas);
+    let mapelAktifSet = new Set(pengampuKelas.map(p => p.mapel));
+
+    let activeTahfidz = (db.mapel_tahfidz||[]).filter(m => mapelAktifSet.has(m.surah));
+    let activeBaru = activeTahfidz.filter(m => !(m.kelompok||"").toLowerCase().includes("murojaah"));
+    let activeMurojaah = activeTahfidz.filter(m => (m.kelompok||"").toLowerCase().includes("murojaah"));
+    
+    let catBaru = [...new Set(activeBaru.map(m => m.kelompok).filter(k => k))];
+    let catMurojaah = [...new Set(activeMurojaah.map(m => m.kelompok).filter(k => k))];
+
+    let btnAllArea = '';
+    if (type === 'akademik') {
+        let activeReguler = (db.mapel_reguler||[]).filter(m => mapelAktifSet.has(m.nama));
+        if (activeReguler.length > 0) {
+            btnAllArea = `<button class="green" onclick="printAllClassReport('akademik')">🖨 Cetak Rapot Sekelas</button>`;
+        }
+    } else {
+        catBaru.forEach(cat => {
+            btnAllArea += `<button class="green" style="margin:2px;" onclick="printAllClassReport('tahfidz_baru', '${esc(cat)}')">🖨 Cetak Baru ${esc(cat)} Sekelas</button> `;
+        });
+        catMurojaah.forEach(cat => {
+            btnAllArea += `<button class="green" style="background:#007bff; margin:2px;" onclick="printAllClassReport('tahfidz_murojaah', '${esc(cat)}')">🖨 Cetak ${esc(cat)} Sekelas</button> `;
+        });
+    }
+    if(btnContainer) btnContainer.innerHTML = btnAllArea;
+
+    let tableRows = listSiswa.map((s, idx) => {
+        let actionButtons = '';
+        if (type === 'akademik') {
+            actionButtons = `<button type="button" class="green" onclick="printSingleStudent(${Number(s.id)}, 'akademik')">🖨 Cetak Akademik</button>`;
+        } else {
+            catBaru.forEach(cat => {
+                actionButtons += `<button type="button" class="green" style="margin:2px;" onclick="printSingleStudent(${Number(s.id)}, 'tahfidz_baru', '${esc(cat)}')">🖨 Cetak Baru ${esc(cat)}</button> `;
+            });
+            catMurojaah.forEach(cat => {
+                actionButtons += `<button type="button" class="green" style="background:#007bff; margin:2px;" onclick="printSingleStudent(${Number(s.id)}, 'tahfidz_murojaah', '${esc(cat)}')">🖨 Cetak ${esc(cat)}</button> `;
+            });
+            if(!actionButtons) actionButtons = `<span class="pill gray">Belum ada mapel aktif</span>`;
+        }
+        
+        return `<tr>
+            <td style="text-align:center; width:50px;">${idx + 1}</td>
+            <td style="text-align:center;">${esc(studentNism(s))}</td>
+            <td style="text-align:center;">${esc(s.nisn)}</td>
+            <td style="font-weight:600;">${esc(s.nama)}</td>
+            <td style="text-align:center; width:80px;">${esc(s.jk)}</td>
+            <td style="text-align:center; width:250px;">${actionButtons}</td>
+        </tr>`;
+    }).join("");
+
+    container.innerHTML = `
+        <div class="cardbody">
+            <h3 style="margin-top:0; margin-bottom:12px; font-size:15px; color:#394b66;">Daftar Siswa Kelas: ${esc(selectedKelas)}</h3>
+            <div class="tablewrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;">No</th>
+                            <th style="text-align:center;">NISM</th>
+                            <th style="text-align:center;">NISN</th>
+                            <th>Nama Siswa</th>
+                            <th style="text-align:center;">L/P</th>
+                            <th style="text-align:center;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>${tableRows}</tbody>
+                </table>
+            </div>
+        </div>
+        <div id="hiddenPrintArea" class="hidden"></div>
+    `;
+}
+
+function printSingleStudentBase(studentName, reportType, category) {
+    try {
+        let area = $("#hiddenPrintArea");
+        if(!area) {
+            area = document.createElement("div");
+            area.id = "hiddenPrintArea";
+            area.className = "hidden";
+            document.body.appendChild(area);
+        }
+        
+        if (reportType === 'akademik') area.innerHTML = reportPaperAkademik(studentName);
+        else area.innerHTML = reportPaperTahfidz(studentName, reportType, category);
+        
+        area.classList.remove("hidden");
+        setTimeout(function() { 
+            window.print(); 
+        }, 500);
+        window.onafterprint = function() { area.classList.add("hidden"); area.innerHTML = ""; };
+    } catch(err) {
+        console.error(err);
+        toast("Terjadi kesalahan saat memproses data cetak!");
+    }
+}
+
+function printAllClassReportBase(reportType, category) {
+    try {
+        let selectedKelas = $("#reportKelas").value;
+        if(!selectedKelas) return;
+        let listSiswa = (db.siswa||[]).filter(s => s.kelas === selectedKelas);
+        if(listSiswa.length === 0) return;
+
+        let area = $("#hiddenPrintArea");
+        if(!area) {
+            area = document.createElement("div");
+            area.id = "hiddenPrintArea";
+            area.className = "hidden";
+            document.body.appendChild(area);
+        }
+
+        if (reportType === 'akademik') {
+            area.innerHTML = listSiswa.map(s => reportPaperAkademik(s)).join("");
+        } else {
+            area.innerHTML = listSiswa.map(s => reportPaperTahfidz(s, reportType, category)).join("");
+        }
+        
+        area.classList.remove("hidden");
+        setTimeout(function() { 
+            window.print(); 
+        }, 800);
+        window.onafterprint = function() { area.classList.add("hidden"); area.innerHTML = ""; };
+    } catch (err) {
+        console.error(err);
+        toast("Terjadi kesalahan saat memproses data sekelas!");
+    }
+}
+
+function reportPaperAkademik(studentRef){
+    let s = resolveStudentRef(studentRef);
+    let grades = gradesForStudent(s);
+    let kelasSiswa = s ? s.kelas : "-";
+    let namaSiswa = s ? s.nama : "-";
+    let nisSiswa = s ? (studentNism(s) || "-") : "-";
+    let nisnSiswa = s ? s.nisn : "-";
+    
+    let kelasObj = (db.kelas||[]).find(k => k.nama === kelasSiswa);
+    let namaWaliKelas = kelasObj ? kelasObj.wali : "....................................";
+    let totalSiswa = (db.siswa||[]).filter(x => x.kelas === kelasSiswa).length;
+
+    let pengampuKelas = (db.pengampu || []).filter(p => p.kelas === kelasSiswa);
+    let mapelAktifSet = new Set(pengampuKelas.map(p => p.mapel));
+
+    const getNilai = (mapelName) => {
+        let n = grades.find(x => x.mapel === mapelName);
+        if(!n) return { angka: "", deskripsi: "" };
+        let avg = ((+n.pengetahuan + +n.keterampilan) / 2);
+        let deskripsi = avg >= 90 ? "Sangat Baik Dalam Menguasai Materi" : avg >= 80 ? "Baik Dalam Menguasai Materi" : avg >= 70 ? "Cukup Menguasai Materi" : "Belajar Lebih Giat Lagi";
+        return { angka: avg.toFixed(0), deskripsi: deskripsi };
+    };
+
+    let totalNilai = 0;
+    let jumlahMapelTampil = 0;
+    let htmlRows = '';
+    let nomorUrut = 1;
+
+    let mapelPAI = (db.mapel_reguler||[]).filter(m => m.kelompok === 'PAI' && mapelAktifSet.has(m.nama));
+    if (mapelPAI.length > 0) {
+        htmlRows += `<tr><td style="text-align:center">${nomorUrut}.</td><td colspan="3" style="font-weight:bold;">Pendidikan Agama Islam</td></tr>`;
+        mapelPAI.forEach((m, idx) => {
+            let nilai = getNilai(m.nama);
+            if(nilai.angka !== "") {
+                totalNilai += +nilai.angka;
+                jumlahMapelTampil++;
+            }
+            let abjad = String.fromCharCode(97 + idx); 
+            htmlRows += `<tr><td></td><td>${abjad}. ${esc(m.nama)}</td><td style="text-align:center">${nilai.angka}</td><td style="text-align:center"; >${nilai.deskripsi}</td></tr>`;
+        });
+        nomorUrut++;
+    }
+
+    let mapelUmum = (db.mapel_reguler||[]).filter(m => m.kelompok === 'Umum' && mapelAktifSet.has(m.nama));
+    mapelUmum.forEach(m => {
+        let nilai = getNilai(m.nama);
+        if(nilai.angka !== "") {
+            totalNilai += +nilai.angka;
+            jumlahMapelTampil++;
+        }
+        htmlRows += `<tr><td style="text-align:center">${nomorUrut}.</td><td>${esc(m.nama)}</td><td style="text-align:center">${nilai.angka}</td><td>${nilai.deskripsi}</td></tr>`;
+        nomorUrut++;
+    });
+
+    let mapelMulok = (db.mapel_reguler||[]).filter(m => m.kelompok === 'Muatan Lokal' && mapelAktifSet.has(m.nama));
+    if (mapelMulok.length > 0) {
+        htmlRows += `<tr><td style="text-align:center">${nomorUrut}.</td><td colspan="3" style="font-weight:bold;">Muatan Lokal</td></tr>`;
+        mapelMulok.forEach((m, idx) => {
+            let nilai = getNilai(m.nama);
+            if(nilai.angka !== "") {
+                totalNilai += +nilai.angka;
+                jumlahMapelTampil++;
+            }
+            let abjad = String.fromCharCode(97 + idx); 
+            htmlRows += `<tr><td></td><td>${abjad}. ${esc(m.nama)}</td><td style="text-align:center">${nilai.angka}</td><td>${nilai.deskripsi}</td></tr>`;
+        });
+        nomorUrut++;
+    }
+
+    let rataRata = jumlahMapelTampil > 0 ? (totalNilai / jumlahMapelTampil).toFixed(2) : 0;
+    
+    let logoElem = (db.profil && db.profil.logo) ? `<img src="${db.profil.logo}" style="width:100%; max-height:75px; object-fit:contain"/>` : '';
+    let pNama = esc(db.profil && db.profil.nama).toUpperCase();
+    let pKota = esc(db.profil && db.profil.kota).toUpperCase();
+    let pNsm = esc(db.profil && db.profil.nsm);
+    let pNpsn = esc(db.profil && db.profil.npsn);
+    let pAlamat = esc(db.profil && db.profil.alamat);
+    let pSemester = esc(db.profil && db.profil.semester);
+    let pTahun = esc(db.profil && db.profil.tahun);
+    let pTgl = esc((db.profil && db.profil.tglCetak) ? db.profil.tglCetak : '16 Mei 2026');
+    let pKotaKecil = esc(db.profil && db.profil.kota);
+    let pNamaKecil = esc(db.profil && db.profil.nama);
+
+    let rankData = getLeggerStudentRanking(kelasSiswa, 'akademik');
+    let peringkatKelas = rankData.ranks[studentIdentityKey(s)] || (s && s.id!=null ? rankData.ranks['id:'+String(s.id)] : '-') || '-';
+    let totalSiswaLegger = rankData.total || totalSiswa;
+    return `<div class="report-f4">
+        <div class="kop-surat">
+           <div style="flex: 0 0 85px; text-align:center; padding-right:10px;">${logoElem}</div>
+           <div style="flex: 1; text-align: center;">
+              <h3>YAYASAN PONTREN HIDAYATUL INSAN FII TA'LIMIDDIN</h3>
+              <h2>${pNama} ${pKota} "TERAKREDITASI-B"</h2>
+              <p>| NSM : ${pNsm} | E-mail : mihidayatulinsan@gmail.com | NPSN : ${pNpsn} |</p>
+           </div>
+           <div style="flex: 0 0 85px;"></div>
+        </div>
+        <br>
+        <h3 style="text-align:center; margin: 8px 0 3px; font-size: 11pt;">NILAI RAPORT ASESMEN TENGAH SEMESTER</h3>
+        <br>
+        <table class="no-border" style="margin-bottom: 8px;">
+            <tr>
+                <td style="width:20%">Nama Madrasah</td><td style="width:2%">:</td><td style="width:40%">${pNamaKecil}</td>
+                <td style="width:15%">Kelas</td><td style="width:2%">:</td><td>${esc(kelasSiswa)}</td>
+            </tr>
+            <tr>
+                <td>Alamat</td><td>:</td><td>${pAlamat}</td>
+                <td>Semester</td><td>:</td><td>${pSemester}</td>
+            </tr>
+            <tr>
+                <td>Nama Siswa</td><td>:</td><td style="font-weight:bold;">${esc(namaSiswa).toUpperCase()}</td>
+                <td>Tahun Ajaran</td><td>:</td><td>${pTahun}</td>
+            </tr>
+            <tr>
+                <td>NISM / NISN</td><td>:</td><td>${esc(nisSiswa)} / ${esc(nisnSiswa)}</td>
+                <td></td><td></td><td></td>
+            </tr>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:4%">No</th>
+                    <th style="width:45%">Mata Pelajaran</th>
+                    <th style="width:12%">NILAI<br>Angka</th>
+                    <th style="width:39%">Deskripsi Kemajuan Belajar</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${htmlRows}
+                <tr>
+                    <td colspan="2" style="text-align:center; font-weight:bold;">JUMLAH NILAI</td>
+                    <td style="text-align:center; font-weight:bold;">${totalNilai.toFixed(0)}</td>
+                    <td style="text-align:center; text-transform: uppercase;">${terbilangNilai(totalNilai)}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center; font-weight:bold;">RATA-RATA</td>
+                    <td style="text-align:center; font-weight:bold;">${rataRata}</td>
+                    <td style="text-align:center; text-transform: uppercase;">${terbilangNilai(rataRata)}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="display:flex; justify-content:space-between; gap:15px; margin-top:8px;">
+            <div style="width: 50%;">
+                <table>
+                    <thead><tr><th style="width:10%">No.</th><th>Kepribadian/Perilaku</th><th style="width:20%">Nilai</th></tr></thead>
+                    <tbody>
+                        <tr><td style="text-align:center">1.</td><td>Kedisiplinan & Tanggung Jawab</td><td style="text-align:center">${esc(getTraitValue(getWaliDataFor(s, kelasSiswa), 'kedisiplinan'))}</td></tr>
+                        <tr><td style="text-align:center">2.</td><td>Kebersihan dan Kerapian</td><td style="text-align:center">${esc(getTraitValue(getWaliDataFor(s, kelasSiswa), 'kebersihan'))}</td></tr>
+                        <tr><td style="text-align:center">3.</td><td>Kerjasama</td><td style="text-align:center">${esc(getTraitValue(getWaliDataFor(s, kelasSiswa), 'kerjasama'))}</td></tr>
+                        <tr><td style="text-align:center">4.</td><td>Kesopanan</td><td style="text-align:center">${esc(getTraitValue(getWaliDataFor(s, kelasSiswa), 'kesopanan'))}</td></tr>
+                        <tr><td style="text-align:center">5.</td><td>Kemandirian</td><td style="text-align:center">${esc(getTraitValue(getWaliDataFor(s, kelasSiswa), 'kemandirian'))}</td></tr>
+                        <tr><td style="text-align:center">6.</td><td>Kerajinan</td><td style="text-align:center">${esc(getTraitValue(getWaliDataFor(s, kelasSiswa), 'kerajinan'))}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="width: 50%;">
+                <table>
+                    <thead><tr><th style="width:10%">No.</th><th>Ketidakhadiran</th><th style="width:30%">Hari</th></tr></thead>
+                    <tbody>
+                        <tr><td style="text-align:center">1.</td><td>Sakit</td><td style="text-align:center">${Number(getWaliDataFor(s, kelasSiswa).sakit || 0)}</td></tr>
+                        <tr><td style="text-align:center">2.</td><td>Izin</td><td style="text-align:center">${Number(getWaliDataFor(s, kelasSiswa).izin || 0)}</td></tr>
+                        <tr><td style="text-align:center">3.</td><td>Tanpa Keterangan</td><td style="text-align:center">${Number(getWaliDataFor(s, kelasSiswa).alpha || 0)}</td></tr>
+                    </tbody>
+                </table>
+                <div style="border: 1px solid black; padding: 4px; margin-top: 5px; min-height: 45px;">
+                    <strong style="display:block; border-bottom:1px solid black; padding-bottom:2px; margin-bottom:2px;">Catatan Wali Kelas:</strong>
+                    ${esc(getWaliDataFor(s, kelasSiswa).catatan || "")}
+                </div>
+            </div>
+        </div>
+        
+        <table class="no-border" style="margin-top: 8px;">
+            <tr>
+                <td style="width:20%; font-weight:bold; padding-left:0;">Peringkat Kelas Ke :</td>
+                <td style="width:10%; text-align:center; font-weight:bold; border: 1px solid black;">${peringkatKelas}</td>
+                <td style="width:10%; text-align:center;">Dari</td>
+                <td style="width:10%; text-align:center; font-weight:bold; border: 1px solid black;">${totalSiswaLegger}</td>
+                <td style="width:50%;">Siswa</td>
+            </tr>
+        </table>
+
+        <table class="no-border" style="margin-top: 15px; text-align: center;">
+            <tr>
+                <td style="width: 33%;">Mengetahui,<br>Orang Tua/Wali Murid<br><br><br><br><br>( .................................... )</td>
+                <td style="width: 33%;"></td>
+                <td style="width: 33%;">Diberikan di : ${pKotaKecil}<br>Tanggal : ${pTgl}<br>Wali Kelas<br><br><br><br><br><b>${esc(namaWaliKelas)}</b></td>
+            </tr>
+        </table>
+    </div>`;
+}
+
+function reportPaperTahfidz(studentRef, reportType, category) {
+    let s = resolveStudentRef(studentRef);
+    let titleTahfidz = (reportType === 'tahfidz_baru') ? 'HAFALAN BARU' : 'HAFALAN MUROJAAH';
+    let kelasSiswa = s ? (s.kelas || "-") : "-";
+    let namaSiswa = s ? (s.nama || "-") : "-";
+    let nisSiswa = s ? (studentNism(s) || "-") : "-";
+    let nisnSiswa = s ? (s.nisn || "-") : "-";
+    
+    let kelasObj = (db.kelas||[]).find(k => k.nama === kelasSiswa);
+    let namaWaliKelas = (kelasObj && kelasObj.wali !== "-") ? kelasObj.wali : "( .................................... )";
+    let totalSiswa = (db.siswa||[]).filter(x => x.kelas === kelasSiswa).length;
+
+    let isGanjil = (db.profil && db.profil.semester === 'Ganjil');
+    let semesterTeks = isGanjil ? 'I (Satu) / Ganjil' : 'II (Dua) / Genap';
+    
+    let logoElem = (db.profil && db.profil.logo) ? `<img src="${db.profil.logo}" style="width:100%; max-height:75px; object-fit:contain"/>` : '';
+    let pNama = esc(db.profil && db.profil.nama).toUpperCase();
+    let pKota = esc(db.profil && db.profil.kota).toUpperCase();
+    let pNsm = esc(db.profil && db.profil.nsm);
+    let pNpsn = esc(db.profil && db.profil.npsn);
+    let pAlamat = esc(db.profil && db.profil.alamat);
+    let pTahun = esc(db.profil && db.profil.tahun);
+    let pTgl = esc((db.profil && db.profil.tglCetak) ? db.profil.tglCetak : '16 Mei 2026');
+    let pKotaKecil = esc(db.profil && db.profil.kota);
+    let pNamaKecil = esc(db.profil && db.profil.nama);
+
+    let grades = gradesForStudent(s);
+    let pengampuKelas = (db.pengampu || []).filter(p => p.kelas === kelasSiswa && p.tipe === 'tahfidz');
+    let mapelAktifSet = new Set(pengampuKelas.map(p => p.mapel));
+
+    let isMurojaah = reportType === 'tahfidz_murojaah';
+    let mapelList = (db.mapel_tahfidz||[]).filter(m => {
+        if (!mapelAktifSet.has(m.surah)) return false; 
+        if (category) {
+            return m.kelompok === category;
+        } else {
+            let isKelMurojaah = (m.kelompok || "").toLowerCase().includes("murojaah");
+            return isMurojaah ? isKelMurojaah : !isKelMurojaah;
+        }
+    });
+
+    let namaGuruTahfidz = "( .................................... )";
+    if (mapelList.length > 0) {
+        let mapelPertama = mapelList[0].surah;
+        let dataPengampu = pengampuKelas.find(p => p.mapel === mapelPertama);
+        if (dataPengampu && dataPengampu.guru) {
+            namaGuruTahfidz = dataPengampu.guru;
+        }
+    }
+
+    let catatanGuruTerkirim = grades.filter(n => mapelList.some(m => m.surah === n.mapel) && n.catatanGuru).map(n => n.catatanGuru).find(Boolean) || '';
+    let htmlRows = '';
+    let totalNilai = 0;
+    let countNilai = 0;
+
+    if (mapelList.length === 0) {
+        htmlRows = `<tr><td colspan="7" class="empty">Belum ada data hafalan / Guru Pengisi Nilai belum diatur.</td></tr>`;
+    } else {
+        mapelList.forEach((m, idx) => {
+            let juzVal = "";
+            let kel = m.kelompok || "";
+            if (kel.includes("30")) juzVal = "30";
+            else if (kel.includes("1")) juzVal = "1";
+            else if (kel.includes("2")) juzVal = "2";
+            else if (kel.includes("3")) juzVal = "3";
+            else if (kel.includes("4")) juzVal = "4";
+            else juzVal = kel.replace(/[^0-9]/g, '');
+
+            let n = grades.find(x => x.mapel === m.surah);
+            let val = 0;
+            if(n) val = Math.round((+n.pengetahuan + +n.keterampilan) / 2) || 0;
+            
+            totalNilai += val;
+            countNilai++;
+            
+            let predikat = val >= 90 ? 'A' : val >= 80 ? 'B' : val >= 70 ? 'C' : 'D';
+            let keterangan = val >= 90 ? 'Sangat Baik' : val >= 80 ? 'Cukup Baik' : val >= 70 ? 'Kurang Lancar' : 'Belum Tercapai';
+            let kkm = 70;
+
+            htmlRows += `<tr>
+                <td style="text-align:center;">${idx + 1}</td>
+                <td style="text-align:center;">${juzVal}</td>
+                <td style="text-align:left;">${esc(m.surah)}</td>
+                <td style="text-align:center;">${kkm}</td>
+                <td style="text-align:center;">${val > 0 ? val : ''}</td>
+                <td style="text-align:center;">${val > 0 ? predikat : ''}</td>
+                <td style="text-align:center;">${val > 0 ? keterangan : ''}</td>
+            </tr>`;
+        });
+    }
+    
+    let rankCategory = category || (mapelList.length ? ((db.mapel_tahfidz||[]).find(m=>m.surah===mapelList[0])||{}).kelompok : '');
+    let rankDataTahfidz = getLeggerStudentRanking(kelasSiswa, 'tahfidz', rankCategory);
+    let peringkatKelasTahfidz = rankDataTahfidz.ranks[studentIdentityKey(s)] || (s && s.id!=null ? rankDataTahfidz.ranks['id:'+String(s.id)] : '-') || '-';
+    let totalSiswaLeggerTahfidz = rankDataTahfidz.total || totalSiswa;
+    return `<div class="report-f4">
+        <div class="kop-surat">
+           <div style="flex: 0 0 85px; text-align:center; padding-right:10px;">${logoElem}</div>
+           <div style="flex: 1; text-align: center;">
+              <h3>YAYASAN PONTREN HIDAYATUL INSAN FII TA'LIMIDDIN</h3>
+              <h2>${pNama} ${pKota} "TERAKREDITASI-B"</h2>
+              <p>| NSM : ${pNsm} | E-mail : mihidayatulinsan@gmail.com | NPSN : ${pNpsn} |</p>
+           </div>
+           <div style="flex: 0 0 85px;"></div>
+        </div>
+        <br>
+        <h3 style="text-align:center; margin: 8px 0 3px; font-size: 12pt; font-weight:bold;">HASIL PENILAIAN TAHFIDZ AL-QUR'AN</h3>
+        <br>
+        <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:11pt;">
+            <table class="no-border" style="width:55%;">
+                <tr><td style="width:40%">Nama Madrasah</td><td style="width:3%">:</td><td>${pNamaKecil}</td></tr>
+                <tr><td>Alamat</td><td>:</td><td>${pAlamat}</td></tr>
+                <tr><td>Nama Siswa</td><td>:</td><td style="font-weight:bold;">${esc(namaSiswa).toUpperCase()}</td></tr>
+                <tr><td>Nomor Induk Siswa / NISN</td><td>:</td><td>${esc(nisSiswa)} / ${esc(nisnSiswa)}</td></tr>
+            </table>
+            <table class="no-border" style="width:40%;">
+                <tr><td style="width:35%">Kelas</td><td style="width:5%">:</td><td>${esc(kelasSiswa)}</td></tr>
+                <tr><td>Semester</td><td>:</td><td>${semesterTeks}</td></tr>
+                <tr><td>Tahun Ajaran</td><td>:</td><td>${pTahun}</td></tr>
+            </table>
+        </div>
+        <h3 style="text-align:center; font-size:13pt; margin:15px 0;">${titleTahfidz}</h3>
+        <table style="width:100%; border-collapse:collapse; text-align:center;" border="1">
+            <thead>
+                <tr style="background:#f6f8fa;">
+                    <th style="padding:6px; width:5%;">No</th>
+                    <th style="padding:6px; width:10%;">JUZ</th>
+                    <th style="padding:6px; width:35%;">SURAH / AYAT</th>
+                    <th style="padding:6px; width:10%;">KKM</th>
+                    <th style="padding:6px; width:10%;">NILAI</th>
+                    <th style="padding:6px; width:10%;">PREDIKAT</th>
+                    <th style="padding:6px; width:20%;">KETERANGAN</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${htmlRows}
+            </tbody>
+        </table>
+        <table class="no-border" style="margin-top: 15px; width:100%;">
+            <tr>
+                <td style="width:15%; font-weight:bold; padding-left:0;">Peringkat Kelas Ke</td>
+                <td style="width:2%;">:</td>
+                <td style="width:5%; text-align:center; font-weight:bold; border: 1px solid black;">${peringkatKelasTahfidz}</td>
+                <td style="width:5%; text-align:center;">Dari</td>
+                <td style="width:5%; text-align:center; font-weight:bold; border: 1px solid black;">${totalSiswaLeggerTahfidz}</td>
+                <td style="width:68%; padding-left:10px;">Santri</td>
+            </tr>
+        </table>
+
+        <div style="margin-top:10px; font-size:11pt;">
+            <strong>Catatan Guru:</strong> ${esc(catatanGuruTerkirim)}
+        </div>
+
+        <table class="no-border" style="margin-top: 25px; width:100%; text-align: center;">
+    <tr>
+        <td style="width: 33%; vertical-align:top;">
+            Mengetahui,<br>
+            Orang Tua/Wali Murid<br><br><br><br><br>
+            ( .................................... )
+        </td>
+        <td style="width: 33%; vertical-align:top;"></td>
+        <td style="width: 33%; vertical-align:top;">
+            Diberikan di : ${pKotaKecil}<br>
+            Tanggal : ${pTgl}<br>
+            Guru ${kelasSiswa}<br><br><br><br><br>
+            <b>${esc(namaGuruTahfidz)}</b>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="padding-top:25px; text-align:center; vertical-align:top;">
+            Mengetahui,<br>
+            Kepala Madrasah<br>
+            <div style="position:relative; width:100%; height:80px; margin:0 auto;">
+                ${db.profil && db.profil.ttdKepala ? `<img src="${db.profil.ttdKepala}" style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); width:240px; height:120px; object-fit:contain; z-index:10;">` : ''}
+                <br><br><br><br><b>${esc((db.profil && db.profil.kepala) || '')}</b>
+            </div>
+        </td>
+    </tr>
+</table>`;
+
+}
+
+/* ==================================================== */
+/* FUNGSI MENU CETAK LEGGER NILAI                       */
+/* ==================================================== */
+function leggerPage(){
+    const canReg=!teacherMode()||waliHasAssignmentType('reguler');
+    const canTah=!teacherMode()||waliHasAssignmentType('tahfidz');
+    const typeCount=(canReg?1:0)+(canTah?1:0);
+    return `<section class="card">
+        <div class="cardhead" style="background:#fcfdff; font-weight:bold;">Cetak Legger Nilai Sesuai Format</div>
+        <div class="cardbody no-print"><div class="toolbar" style="margin-bottom:15px; align-items:flex-end;">
+          <div class="field ${teacherMode()&&typeCount===1?'hidden':''}" style="margin-bottom:0;"><label style="font-weight:600;">Jenis Legger:</label><select id="jenisLegger" onchange="updateLeggerFilter()" style="border:1px solid var(--blue);min-width:180px;">${canReg?'<option value="akademik">Legger Akademik</option>':''}${canTah?'<option value="tahfidz">Legger Tahfidz</option>':''}</select></div>
+          <div class="field ${teacherMode()?'hidden':''}" style="margin-bottom:0;"><label style="font-weight:600;">Pilih Kelas:</label><select id="kelasLegger" onchange="updateLeggerKategori()" style="border:1px solid var(--blue);min-width:180px;"><option value="">-- Pilih Kelas --</option></select></div>
+          <div class="field hidden" id="boxKategoriLegger" style="margin-bottom:0;"><label style="font-weight:600;">Kategori Mapel Tahfidz:</label><select id="kategoriLegger" onchange="renderLeggerTable()" style="border:1px solid var(--blue);min-width:180px;"></select></div>
+          <span class="spacer"></span><button class="green hidden" id="btnPrintLegger" onclick="printLegger()">🖨 Cetak Legger (PDF)</button>
+        </div></div>
+        <div id="leggerContainer" style="overflow-x:auto;"><div class="empty">Memuat Legger...</div></div>
+    </section>`;
+}
+
+function updateLeggerFilter() {
+    let jenis=$("#jenisLegger").value, kelasSelect=$("#kelasLegger"), boxKategori=$("#boxKategoriLegger"); if(!jenis)return;
+    const kelasAkademik=["I Reguler","II Reguler","III Reguler","IV Reguler","V Reguler","VI Reguler","I Tahfidz","II Tahfidz","III Tahfidz","IV Tahfidz","V Tahfidz","VI Tahfidz"];
+    const kelasTahfidz=["I Tahfidz","II Tahfidz","III Tahfidz","IV Tahfidz","V Tahfidz","VI Tahfidz"];
+    let list=jenis==='akademik'?kelasAkademik:kelasTahfidz;
+    if(teacherMode()){
+      list=getWaliClasses().filter(k=>jenis==='akademik'?waliHasAssignmentType('reguler'):waliHasAssignmentType('tahfidz'));
+      if(kelasSelect){kelasSelect.innerHTML=list.length?`<option value="${esc(list[0])}">${esc(list[0])}</option>`:'';kelasSelect.value=list[0]||'';}
+    }else if(kelasSelect){kelasSelect.innerHTML='<option value="">-- Pilih Kelas --</option>'+list.map(k=>`<option value="${esc(k)}">${esc(k)}</option>`).join('');}
+    if(jenis==='akademik'){
+      boxKategori.classList.add('hidden'); if($("#kategoriLegger"))$("#kategoriLegger").innerHTML='';
+      if(teacherMode()&&list.length)renderLeggerTable(); else {$("#leggerContainer").innerHTML='<div class="empty">Silakan pilih kelas untuk memunculkan Legger.</div>';$(`#btnPrintLegger`).classList.add('hidden');}
+    }else{boxKategori.classList.remove('hidden');updateLeggerKategori();}
+}
+
+function updateLeggerKategori() {
+    let jenis = $("#jenisLegger").value;
+    let kelas = $("#kelasLegger").value;
+    
+    if (jenis === 'akademik') {
+        renderLeggerTable();
+        return;
+    }
+
+    let katSelect = $("#kategoriLegger");
+    if (!kelas) {
+        katSelect.innerHTML = '<option value="">-- Pilih Kategori --</option>';
+        return;
+    }
+
+    // Filter dinamis: Hanya mengambil Mapel Tahfidz yang terisi Guru Pengisi Nilainya di Input Nilai
+    let pengampuKelas = (db.pengampu || []).filter(p => p.kelas === kelas && p.tipe === 'tahfidz' && p.guru && p.guru.trim() !== "");
+    let mapelAktifSet = new Set(pengampuKelas.map(p => p.mapel));
+    
+    let activeTahfidz = (db.mapel_tahfidz || []).filter(m => mapelAktifSet.has(m.surah));
+    let categories = [...new Set(activeTahfidz.map(m => m.kelompok).filter(k => k))];
+    
+    let options = '<option value="">-- Pilih Kategori --</option>';
+    
+    // Label otomatis untuk dropdown Hafalan Baru & Murojaah
+    categories.forEach(c => {
+        let label = c;
+        if (c.toLowerCase().includes("murojaah")) {
+            let juzStr = c.replace(/murojaah/i, "").trim();
+            label = "Hafalan Murojaah - " + juzStr;
+        } else {
+            label = "Hafalan Baru - " + c;
+        }
+        options += `<option value="${c}">${label}</option>`;
+    });
+    
+    katSelect.innerHTML = options;
+    if(teacherMode() && categories.length){ katSelect.value=categories[0]; renderLeggerTable(); return; }
+    $("#leggerContainer").innerHTML = '<div class="empty">Silakan pilih Kategori Mapel Tahfidz.</div>';
+    $("#btnPrintLegger").classList.add("hidden");
+}
+
+function renderLeggerTable() {
+    let jenis = $("#jenisLegger").value;
+    let kelas = $("#kelasLegger").value;
+    let kategori = $("#kategoriLegger") ? $("#kategoriLegger").value : "";
+    let container = $("#leggerContainer");
+    let btnPrint = $("#btnPrintLegger");
+    
+    if(!kelas || (jenis === 'tahfidz' && !kategori)) {
+        container.innerHTML = '<div class="empty">Silakan lengkapi filter di atas untuk memunculkan tabel.</div>';
+        btnPrint.classList.add("hidden");
+        return;
+    }
+    
+    let listSiswa = (db.siswa || []).filter(s => s.kelas === kelas);
+    if(listSiswa.length === 0) {
+        container.innerHTML = `<div class="empty">Tidak ada siswa yang terdaftar di kelas ${kelas}.</div>`;
+        btnPrint.classList.add("hidden");
+        return;
+    }
+    
+    btnPrint.classList.remove("hidden");
+    
+    // Ambil pengampu yang terisi nama gurunya
+    let pengampuKelas = (db.pengampu || []).filter(p => p.kelas === kelas && p.guru && p.guru.trim() !== "");
+    let tipeMapel = jenis === 'akademik' ? 'reguler' : 'tahfidz';
+    let mapelAktifSet = new Set(pengampuKelas.filter(p => p.tipe === tipeMapel).map(p => p.mapel));
+    
+    let mapelList = [];
+    let guruPengisi = "( .................................... )";
+    let labelGuru = "Guru ";
+    let subTitleLabel = "LEGGER NILAI ASESMEN TENGAH SEMESTER";
+    
+    if (jenis === 'akademik') {
+        let mapelPAI = (db.mapel_reguler || []).filter(m => m.kelompok === 'PAI' && mapelAktifSet.has(m.nama)).map(m => m.nama);
+        let mapelUmum = (db.mapel_reguler || []).filter(m => m.kelompok === 'Umum' && mapelAktifSet.has(m.nama)).map(m => m.nama);
+        let mapelMulok = (db.mapel_reguler || []).filter(m => m.kelompok === 'Muatan Lokal' && mapelAktifSet.has(m.nama)).map(m => m.nama);
+        
+        mapelList = [...mapelPAI, ...mapelUmum, ...mapelMulok];
+        
+        let kelasObj = (db.kelas || []).find(k => k.nama === kelas);
+        if (kelasObj && kelasObj.wali !== "-") guruPengisi = kelasObj.wali;
+        
+    } else {
+        labelGuru = "Guru ";
+        let activeMapels = (db.mapel_tahfidz || []).filter(m => mapelAktifSet.has(m.surah));
+        
+        activeMapels = activeMapels.filter(m => m.kelompok === kategori);
+        
+        // Auto-Generate Title Legger Tahfidz
+        let titleCat = "";
+        if (kategori.toLowerCase().includes("murojaah")) {
+            let juzStr = kategori.replace(/murojaah/i, "").trim().toUpperCase();
+            titleCat = "HAFALAN MUROJAAH - " + juzStr;
+        } else {
+            titleCat = "HAFALAN BARU - " + kategori.toUpperCase();
+        }
+        subTitleLabel += ` ( ${titleCat} )`;
+        
+        mapelList = activeMapels.map(m => m.surah);
+        
+        if (mapelList.length > 0) {
+            let dataPengampu = pengampuKelas.find(p => p.mapel === mapelList[0]);
+            if (dataPengampu && dataPengampu.guru) guruPengisi = dataPengampu.guru;
+        }
+    }
+    
+    let pNama = esc(db.profil.nama).toUpperCase();
+    let pKota = esc(db.profil.kota);
+    let pTahun = esc(db.profil.tahun);
+    let pAlamat = esc(db.profil.alamat);
+    let pSemester = esc(db.profil.semester);
+    let pNsm = esc(db.profil.nsm);
+    let pNpsn = esc(db.profil.npsn);
+    let logoElem = (db.profil && db.profil.logo) ? `<img src="${db.profil.logo}" style="width:100%; max-height:75px; object-fit:contain"/>` : '';
+
+    // Hitung Jumlah & Rerata Nilai Siswa
+    let studentData = listSiswa.map(s => {
+        let grades = gradesForStudent(s);
+        let rowJumlah = 0;
+        let vals = [];
+        
+        mapelList.forEach(m => {
+            let n = grades.find(x => x.mapel === m);
+            let val = 0;
+            if(n) {
+                val = Math.round((+n.pengetahuan + +n.keterampilan) / 2);
+                if (isNaN(val)) val = 0;
+            }
+            rowJumlah += val;
+            vals.push(val);
+        });
+        
+        let rowRerata = mapelList.length > 0 ? (rowJumlah / mapelList.length) : 0;
+        return { ...s, vals: vals, jumlah: rowJumlah, rerata: rowRerata };
+    });
+
+    // Auto Sort SELURUH DATA SISWA berdasarkan JUMLAH NILAI TERBANYAK (Descending)
+    studentData.sort((a, b) => {
+        if (b.jumlah !== a.jumlah) return b.jumlah - a.jumlah;
+        if (b.rerata !== a.rerata) return b.rerata - a.rerata;
+        return a.nama.localeCompare(b.nama);
+    });
+
+    let rotateStyle = `writing-mode: vertical-rl; transform: rotate(180deg); height:140px; white-space: normal; word-wrap: break-word; padding:8px 5px; margin:auto; text-align:center; vertical-align:middle; line-height:1.2;`;
+
+    let tableHTML = `
+    <div id="printLeggerArea" class="report-f4-landscape" style="padding:15px; background:white; width:100%;">
+        
+        <!-- KOP SURAT LEGGER -->
+        <div class="kop-surat">
+           <div style="flex: 0 0 85px; text-align:center; padding-right:10px;">${logoElem}</div>
+           <div style="flex: 1; text-align: center; line-height:1;">
+              <h3>YAYASAN PONTREN HIDAYATUL INSAN FII TA'LIMIDDIN</h3>
+              <h2>${pNama} ${pKota.toUpperCase()} "TERAKREDITASI-B"</h2>
+              <p>| NSM : ${pNsm} | E-mail : mihidayatulinsan@gmail.com | NPSN : ${pNpsn} |</p>
+           </div>
+           <div style="flex: 0 0 85px;"></div>
+        </div>
+        <br>
+        <h3 style="text-align:center; margin: 10px 0; font-size: 13pt; font-weight:bold; text-decoration:underline;">${subTitleLabel}</h3>
+        
+        <!-- HEADER IDENTITAS DAN JUMLAH MAPEL -->
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:10px; font-size:11pt; font-weight:bold;">
+            <table class="no-border" style="width:40%;">
+                <tr>
+                    <td style="width:35%; padding-left: 0px !important;">KELAS</td>
+                    <td style="width:2%; padding-left: 0px !important;">:</td>
+                    <td style="padding-left: 0px !important;">${kelas}</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 0px !important;">SEMESTER</td>
+                    <td style="padding-left: 0px !important;">:</td>
+                    <td style="padding-left: 0px !important;">${pSemester}</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 0px !important;">TAHUN AJARAN</td>
+                    <td style="padding-left: 0px !important;">:</td>
+                    <td style="padding-left: 0px !important;">${pTahun}</td>
+                </tr>
+            </table>
+            <div style="text-align:right;">
+                Jumlah Mata Pelajaran : ${mapelList.length}
+            </div>
+        </div>
+        
+        <table border="1">
+            <thead>
+                <tr style="background:#fff;">
+                    <th rowspan="2" style="width:3%; text-align:center;">NO</th>
+                    <th rowspan="2" style="width:16%; text-align:center;">NAMA</th>
+                    <th rowspan="2" style="width:6%; text-align:center;">NISM</th>
+                    <th rowspan="2" style="width:6%; text-align:center;">NISN</th>
+                    <th colspan="${mapelList.length > 0 ? mapelList.length : 1}" style="text-align:center;">MATA PELAJARAN</th>
+                    <th colspan="3" style="text-align:center;">REKAPITULASI</th>
+                    <th colspan="3" style="text-align:center;">KEHADIRAN</th>
+                </tr>
+                <tr style="background:#fff;">
+                    ${mapelList.length > 0 ? mapelList.map(m => {
+                        let displayM = m.toUpperCase().trim();
+                        if (displayM === 'SEJARAH KEBUDAYAAN ISLAM') displayM = 'SKI';
+                        else if (displayM === 'ILMU PENGETAHUAN ALAM DAN SOSIAL (IPAS)') displayM = 'IPAS';
+                        else if (displayM.includes('PENDIDIKAN JASMANI')) displayM = 'PJOK';
+                        else if (displayM === 'PENDIDIKAN PANCASILA') displayM = 'P. PANCASILA';
+                        else if (displayM === "BACA TULIS AL-QUR'AN (BTA)") displayM = 'BTA';
+                        else if (displayM.includes('BAHASA DAERAH')) displayM = 'BAHASA DAYAK';
+                        
+                        return `<th><div style="${rotateStyle}">${esc(displayM)}</div></th>`;
+                    }).join("") : '<th>-</th>'}
+                    <th><div style="${rotateStyle}">JUMLAH</div></th>
+                    <th><div style="${rotateStyle}">RERATA</div></th>
+                    <th><div style="${rotateStyle}">RANK</div></th>
+                    <th style="width:3%; text-align:center;">S</th>
+                    <th style="width:3%; text-align:center;">I</th>
+                    <th style="width:3%; text-align:center;">A</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+    
+    let sums = mapelList.map(() => 0);
+    let maxs = mapelList.map(() => 0);
+    
+    studentData.forEach((s, idx) => {
+        let rank = idx + 1; // RANK / NO akan selalu berurutan turun dari angka 1 terlepas dari posisi siswa.
+        tableHTML += `<tr>
+            <td style="text-align:center;">${rank}</td>
+            <td style="text-align:left; padding-left:5px;">${esc(s.nama).toUpperCase()}</td>
+            <td style="text-align:center;">${esc(s.nis)}</td>
+            <td style="text-align:center;">${esc(s.nisn)}</td>`;
+            
+        if (mapelList.length > 0) {
+            s.vals.forEach((val, mIdx) => {
+                sums[mIdx] += val;
+                if(val > maxs[mIdx]) maxs[mIdx] = val;
+                tableHTML += `<td style="text-align:center;">${val > 0 ? val : '0'}</td>`;
+            });
+        } else {
+            tableHTML += `<td style="text-align:center;">0</td>`;
+        }
+        
+        tableHTML += `
+            <td style="text-align:center; font-weight:bold;">${s.jumlah}</td>
+            <td style="text-align:center; font-weight:bold;">${s.rerata.toFixed(1).replace('.0','')}</td>
+            <td style="text-align:center; font-weight:bold;">${rank}</td>
+            <td style="text-align:center;">${Number(getWaliDataFor(s, kelas).sakit || 0)}</td>
+            <td style="text-align:center;">${Number(getWaliDataFor(s, kelas).izin || 0)}</td>
+            <td style="text-align:center;">${Number(getWaliDataFor(s, kelas).alpha || 0)}</td>
+        </tr>`;
+    });
+    
+    tableHTML += `
+        <tr style="font-weight:bold;">
+            <td colspan="4" style="text-align:right; padding-right:15px;">TOTAL</td>
+            ${mapelList.length > 0 ? sums.map(s => `<td style="text-align:center;">${s}</td>`).join("") : '<td>0</td>'}
+            <td colspan="6" style="background:#f6f8fa;"></td>
+        </tr>
+        <tr style="font-weight:bold;">
+            <td colspan="4" style="text-align:right; padding-right:15px;">RATA-RATA</td>
+            ${mapelList.length > 0 ? sums.map(s => `<td style="text-align:center;">${(s/studentData.length).toFixed(1).replace('.0','')}</td>`).join("") : '<td>0</td>'}
+            <td colspan="6" style="background:#f6f8fa;"></td>
+        </tr>
+        <tr style="font-weight:bold;">
+            <td colspan="4" style="text-align:right; padding-right:15px;">NILAI TERTINGGI</td>
+            ${mapelList.length > 0 ? maxs.map(m => `<td style="text-align:center;">${m}</td>`).join("") : '<td>0</td>'}
+            <td colspan="6" style="background:#f6f8fa;"></td>
+        </tr>
+    `;
+    
+    tableHTML += `</tbody></table>
+        
+        <!-- TANDA TANGAN -->
+        <table class="no-border" style="margin-top: 30px; width:100%; text-align: center; font-size:10pt;">
+            <tr>
+                <td style="width: 35%; vertical-align:top;">Mengetahui<br>Kepala Madrasah<br><br><br><br><br><b>${esc(db.profil.kepala)}</b></td>
+                <td style="width: 35%;"></td>
+                <td style="width: 30%; vertical-align:top;">${pKota}, ${esc(db.profil.tglCetak || '16 Mei 2026')}<br>${labelGuru} ${kelas}<br><br><br><br><b>${guruPengisi}</b></td>
+            </tr>
+        </table>
+    </div>`;
+
+    container.innerHTML = tableHTML;
+}
+
+function printLegger() {
+    if(teacherMode()) { const kelas=document.getElementById('kelasLegger')?document.getElementById('kelasLegger').value:''; if(kelas && !reportReady(kelas,true)) return; }
+    let area = $("#hiddenPrintArea");
+    if(!area) {
+        area = document.createElement("div");
+        area.id = "hiddenPrintArea";
+        area.className = "hidden";
+        document.body.appendChild(area);
+    }
+    area.innerHTML = `
+        <style>
+            @media print {
+                @page { 
+                    size: 330.2mm 215.9mm; /* Format F4 Landscape */
+                    margin: 10mm 15mm; 
+                }
+                #content { display: none !important; }
+            }
+        </style> 
+        ${$("#printLeggerArea").outerHTML}
+    `;
+    
+    area.classList.remove("hidden");
+    setTimeout(function() { window.print(); }, 500);
+    window.onafterprint = function() { area.classList.add("hidden"); area.innerHTML = ""; };
+}
+// 4. Eksekusi urutan pemuatan data
+/* ==================================================== */
+/* FUNGSI TAMBAHAN (Mencegah Error Blank Page)          */
+/* ==================================================== */
+function backup(){
+  if(!currentUser||currentUser.role!=='admin')return `<section class="card"><div class="cardbody empty">Menu ini hanya tersedia untuk Administrator.</div></section>`;
+  const year=String((db.profil||{}).tahun||'').trim()||'Tahun-Ajaran'; const safeYear=year.replace(/[^0-9A-Za-z._/-]+/g,'_'); const filename=`Rapot_MIS Hidayatul Insan_${safeYear}.json`;
+  return `<section class="card"><div class="cardhead">Backup & Restore Data dan Setting</div><div class="cardbody"><div class="notice"><h3>Backup lengkap</h3><p>EXPORT menyimpan seluruh data dan setting aplikasi yang tersimpan.</p></div><div class="toolbar"><button class="green" onclick="exportRdmBackup()">⬇ EXPORT DATA & SETTING</button><button class="secondary" onclick="document.getElementById('rdmImportFile').click()">⬆ IMPORT DATA & SETTING</button><input id="rdmImportFile" type="file" accept=".json,application/json" style="display:none" onchange="importRdmBackup(event)"></div><div class="data-row"><span>Nama file</span><span><b>${esc(filename)}</b></span></div><div class="data-row"><span>Tahun Pelajaran</span><span>${esc(year)}</span></div></div></section>`;
+}
+function exportRdmBackup(){ensureNewFields();const year=String((db.profil||{}).tahun||'').trim()||'Tahun-Ajaran';const filename=`Rapot_MIS Hidayatul Insan_${year.replace(/[^0-9A-Za-z._/-]+/g,'_')}.json`;const payload={format:'RDM-MIS-Hidayatul-Insan',version:2,exportedAt:new Date().toISOString(),data:JSON.parse(JSON.stringify(db))};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast('EXPORT berhasil dibuat: '+filename);}
+function importRdmBackup(e){const file=e.target.files&&e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=function(evt){try{const parsed=JSON.parse(evt.target.result);const incoming=parsed&&parsed.data&&parsed.format==='RDM-MIS-Hidayatul-Insan'?parsed.data:parsed;if(!incoming||typeof incoming!=='object'||!incoming.profil)throw new Error('Format backup tidak dikenali.');if(!confirm('IMPORT akan mengganti seluruh data dan setting aplikasi saat ini. Lanjutkan?'))return;db=incoming;checkMigrate(db);ensureNewFields();localStorage.setItem('rdm_mi_data',JSON.stringify(db));save();buildSidebar();go('dashboard');toast('IMPORT berhasil. Situs telah disesuaikan dengan data backup.');}catch(err){console.error(err);toast('IMPORT gagal: '+(err.message||'format tidak valid.'));}finally{e.target.value='';}};reader.readAsText(file);}
+
+function users() {
+  if (!currentUser || currentUser.role !== 'admin') return `<section class="card"><div class="cardbody empty">Menu ini hanya tersedia untuk Administrator.</div></section>`;
+  const rows = (db.guru || []).map((g, i) => {
+    const pegid = String(g.pegid || '').trim();
+    const wali = (db.kelas || []).filter(k => norm(k.wali) === norm(g.nama)).map(k => k.nama);
+    const tugasTahfidz = (db.pengampu || []).some(p => (norm(p.guru) === norm(g.nama) || norm(p.guru) === norm(pegid)) && p.tipe === 'tahfidz');
+    const tugasReguler = (db.pengampu||[]).some(p => (norm(p.guru)===norm(g.nama) || norm(p.guru)===norm(pegid)) && norm(p.tipe)!=='tahfidz');
+    const role = wali.length ? 'Wali Kelas' : (tugasTahfidz && tugasReguler ? 'Guru Reguler & Tahfidz' : (tugasTahfidz ? 'Guru Tahfidz' : (tugasReguler ? 'Guru Mapel Reguler' : 'Guru')));
+    return `<tr><td>${i+1}</td><td>${esc(g.nama || '-')}</td><td>${esc(pegid || '-')}</td><td>${esc(g.nip || '-')}</td><td>${role}</td><td><button class="green" type="button" ${pegid ? '' : 'disabled'} onclick="loginAsTeacher(${Number(g.id) || 0})">Login sebagai Guru</button></td></tr>`;
+  }).join('');
+  return `<section class="card"><div class="cardhead">Daftar User / Guru</div><div class="cardbody"><p class="small-muted">Gunakan tombol <b>Login sebagai Guru</b> untuk memeriksa aplikasi sesuai hak akses guru. Sesi Administrator tetap dapat dipulihkan melalui tombol <b>Kembali ke Menu Admin</b> di kanan atas.</p><div class="tablewrap"><table><thead><tr><th>No.</th><th>Nama Guru</th><th>Username (PegID)</th><th>NIP / NIK</th><th>Jenis Akses</th><th>Aksi</th></tr></thead><tbody>${rows || '<tr><td colspan="6" class="empty">Belum ada data guru. Tambahkan pada menu Guru.</td></tr>'}</tbody></table></div><p class="user-login-note">Password awal akun Guru: Pas12345. Daftar ini tidak menampilkan password.</p></div></section>`;
+}
+
+function useLocalData() {
+    let localData = localStorage.getItem("rdm_mi_data");
+    if(localData) {
+        try {
+            let parsed = JSON.parse(localData);
+            if(parsed && parsed.profil) db = parsed;
+        } catch(e) {
+            console.error("Gagal mem-parsing data lokal", e);
+        }
+    }
+    checkMigrate(db);
+}
+
+/* ==================================================== */
+/* INISIALISASI EVENT LISTENER UI & TOMBOL MENU         */
+/* ==================================================== */
+
+// 1. Mengaktifkan klik pada semua menu sidebar
+document.querySelectorAll('.navitem[data-page]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        go(btn.dataset.page);
+        // Otomatis menutup sidebar di tampilan mobile (HP) setelah menu diklik
+        if (window.innerWidth <= 900) {
+            document.body.classList.add('sidecollapsed');
+        }
+    });
+});
+
+// 2. Mengaktifkan tombol hamburger (Buka/Tutup Sidebar)
+if ($("#collapse")) {
+    $("#collapse").addEventListener('click', () => {
+        document.body.classList.toggle('sidecollapsed');
+    });
+}
+
+// 3. Mengaktifkan tombol Reset Data Demo
+if ($("#reset")) {
+    $("#reset").addEventListener('click', () => {
+        if(confirm("Kembalikan data ke awal (demo)? Semua perubahan lokal Anda akan hilang!")) {
+            localStorage.removeItem("rdm_mi_data");
+            db = JSON.parse(JSON.stringify(initial));
+            save();
+            go("dashboard");
+            toast("Data berhasil direset ke mode awal");
+        }
+    });
+}
+
+// Inisialisasi dijalankan setelah modul login siap.
+/* =====================================================================
+   LOGIN, AKSES GURU, PENGISIAN NILAI, DAN DATA WALI KELAS
+   Penambahan kompatibel dengan struktur data RDM lama.
+   ===================================================================== */
+const RDM_ADMIN_USER = '111262710003';
+const RDM_ADMIN_PASS = 'P4s12345';
+const RDM_TEACHER_PASS = 'Pas12345';
+let currentUser = null;
+let adminReturnContext = null;
+let teacherGradeCategory = 'akademik';
+let teacherGradeContext = null;
+let waliEditContext = null;
+window.rdmDataReady = !!window.rdmDataReady;
+
+function ensureNewFields(){
+  if(!db || typeof db !== 'object') db = JSON.parse(JSON.stringify(initial));
+  if(!Array.isArray(db.pengirimanNilai)) db.pengirimanNilai = [];
+  if(!Array.isArray(db.waliKelas)) db.waliKelas = [];
+  if(!Array.isArray(db.pengampu)) db.pengampu = [];
+  if(!Array.isArray(db.nilai)) db.nilai = [];
+  if(!Array.isArray(db.siswa)) db.siswa = [];
+  if(!Array.isArray(db.guru)) db.guru = [];
+  if(!Array.isArray(db.kelas)) db.kelas = [];
+  if(!Array.isArray(db.mapel_reguler)) db.mapel_reguler = [];
+  if(!Array.isArray(db.mapel_tahfidz)) db.mapel_tahfidz = [];
+  if(!Array.isArray(db.raporKunci)) db.raporKunci = [];
+}
+function isRaporKelasLocked(kelas){
+  ensureNewFields();
+  return (db.raporKunci||[]).some(x=>norm(x.kelas)===norm(kelas)&&String(x.semester||'')===currentSemester()&&String(x.tahun||'')===currentYear()&&x.locked!==false);
+}
+function kelasMonitoringPercent(kelas){
+  const r=(db.pengampu||[]).filter(p=>norm(p.kelas)===norm(kelas)&&norm(p.tipe)!=='tahfidz'&&p.guru&&norm(p.guru)!=='-');
+  const t=(db.pengampu||[]).filter(p=>norm(p.kelas)===norm(kelas)&&norm(p.tipe)==='tahfidz'&&p.guru&&norm(p.guru)!=='-');
+  const pct=a=>a.length?Math.round(a.filter(p=>getSubmission(p.kelas,p.mapel,p.tipe,p.guru)).length/a.length*100):0;
+  const st=(db.siswa||[]).filter(s=>norm(s.kelas)===norm(kelas));
+  const wp=st.length?Math.round(st.filter(s=>{const w=getWaliDataFor(s,kelas);return w&&String(w.semester||'')===currentSemester()&&String(w.tahun||'')===currentYear();}).length/st.length*100):0;
+  return {reguler:pct(r),tahfidz:pct(t),wali:wp,total:Math.round((pct(r)+pct(t)+wp)/3)};
+}
+function lockRaporKelas(kelas){
+  if(!currentUser||currentUser.role!=='admin')return;
+  const m=kelasMonitoringPercent(kelas);
+  if(m.total!==100){toast('Kelas '+kelas+' belum 100%. Rapor belum dapat dikunci.');return;}
+  ensureNewFields();
+  const old=(db.raporKunci||[]).find(x=>norm(x.kelas)===norm(kelas)&&String(x.semester||'')===currentSemester()&&String(x.tahun||'')===currentYear());
+  if(old) old.locked=true; else db.raporKunci.push({id:Date.now(),kelas,semester:currentSemester(),tahun:currentYear(),locked:true,lockedAt:new Date().toISOString()});
+  save();render();toast('Rapor kelas '+kelas+' berhasil dikunci.');
+}
+function confirmLockRaporKelas(kelas){
+  if(!currentUser||currentUser.role!=='admin')return;
+  const m=kelasMonitoringPercent(kelas);
+  if(m.total!==100){toast('Kelas '+kelas+' belum mencapai 100%.');return;}
+  if(isRaporKelasLocked(kelas)){toast('Rapor kelas '+kelas+' sudah dikunci.');return;}
+  if(confirm('KUNCI RAPOR KELAS '+kelas+'?\n\nSetelah dikunci, Guru tidak dapat mengubah nilai atau isian Wali Kelas.')) lockRaporKelas(kelas);
+}
+function ensureClassUnlocked(kelas){
+  if(isRaporKelasLocked(kelas)){toast('Nilai Sudah Dikunci, Hubungi Admin');return false;}
+  return true;
+}
+function teacherMode(){return !!(currentUser && currentUser.role === 'guru');}
+function currentGuru(){return teacherMode() ? currentUser.guru : null;}
+function norm(v){return String(v == null ? '' : v).trim().toLowerCase();}
+function currentSemester(){return String((db.profil||{}).semester || 'Ganjil');}
+function currentYear(){return String((db.profil||{}).tahun || '');}
+function getWaliClasses(){
+  const g=currentGuru(); if(!g) return [];
+  return (db.kelas||[]).filter(k => norm(k.wali) === norm(g.nama)).map(k => k.nama);
+}
+function teacherOwnsClass(kelas){return teacherMode() && getWaliClasses().some(k => norm(k)===norm(kelas));}
+function assignmentBelongsToCurrentTeacher(p){
+  const g=currentGuru(); if(!g) return false;
+  return norm(p.guru)===norm(g.nama) || norm(p.guru)===norm(g.pegid);
+}
+function getTeacherAssignments(){
+  if(!teacherMode()) return [];
+  return (db.pengampu||[]).filter(p => p && p.guru && norm(p.guru)!=='-' && assignmentBelongsToCurrentTeacher(p));
+}
+function teacherHasAssignmentType(tipe){return getTeacherAssignments().some(p=>norm(p.tipe)===norm(tipe));}
+function waliHasAssignmentType(tipe){if(!teacherMode())return false;const own=getWaliClasses().map(norm);return (db.pengampu||[]).some(p=>own.includes(norm(p.kelas))&&norm(p.tipe)===norm(tipe)&&p.guru&&norm(p.guru)!=='-');}
+function waliHasReportType(type){return type==='tahfidz'?waliHasAssignmentType('tahfidz'):waliHasAssignmentType('reguler');}
+function missingSubmissionsForType(kelas,tipe){const list=(db.pengampu||[]).filter(p=>norm(p.kelas)===norm(kelas)&&norm(p.tipe)===norm(tipe)&&p.guru&&norm(p.guru)!=='-');const out=[];const seen=new Set();list.forEach(p=>{const key=[norm(p.mapel),norm(p.guru)].join('|');if(seen.has(key))return;seen.add(key);if(!getSubmission(p.kelas,p.mapel,p.tipe,p.guru))out.push(p);});return out;}
+function missingWaliData(kelas){const students=(db.siswa||[]).filter(s=>norm(s.kelas)===norm(kelas));return students.filter(s=>{const w=getWaliDataFor(s,kelas);return !w||String(w.semester||'')!==currentSemester()||String(w.tahun||'')!==currentYear()||!['kedisiplinan','kebersihan','kerjasama','kesopanan','kemandirian','kerajinan'].every(k=>['A','B','C','D'].includes(getTraitValue(w,k)));});}
+function reportReadyForType(kelas,type,showMessage=true){const tipe=type==='tahfidz'?'tahfidz':'reguler';const missing=missingSubmissionsForType(kelas,tipe);const mw=type==='akademik'?missingWaliData(kelas):[];if(!missing.length&&!mw.length)return true;if(showMessage){const list=missing.map(p=>`<li><b>${esc(p.guru)}</b> · ${esc(p.mapel)}</li>`).join('');const wali= mw.length?`<li><b>${mw.length} siswa</b> belum lengkap pada isian Wali Kelas.</li>`:'';const box=document.createElement('div');box.id='reportReadinessError';box.className='warning-box';box.innerHTML=`<h3>${type==='tahfidz'?'Rapor Tahfidz':'Rapor Akademik'} belum dapat dicetak.</h3><ul>${list}${wali}</ul>`;const old=document.getElementById('reportReadinessError');if(old)old.remove();const cont=document.getElementById('reportContainer');if(cont)cont.prepend(box);}return false;}
+function getSubmission(kelas,mapel,tipe,guru){
+  ensureNewFields();
+  return (db.pengirimanNilai||[]).find(x => norm(x.kelas)===norm(kelas) && norm(x.mapel)===norm(mapel) && norm(x.tipe)===norm(tipe) && norm(x.guru)===norm(guru) && String(x.semester||'')===currentSemester() && String(x.tahun||'')===currentYear() && (x.status==='terkirim' || x.terkirim===true));
+}
+function missingSubmissions(kelas){
+  ensureNewFields();
+  const list=(db.pengampu||[]).filter(p => norm(p.kelas)===norm(kelas) && p.guru && norm(p.guru)!=='-');
+  const unique=[]; const seen=new Set();
+  list.forEach(p=>{
+    const key=[norm(p.tipe),norm(p.mapel),norm(p.guru)].join('|');
+    if(seen.has(key)) return; seen.add(key);
+    if(!getSubmission(p.kelas,p.mapel,p.tipe,p.guru)) unique.push(p);
+  });
+  return unique;
+}
+function reportReady(kelas,showMessage=true){
+  const missing=missingSubmissions(kelas);
+  if(!missing.length) return true;
+  if(showMessage){
+    const list=missing.map(p=>`<li><b>${esc(p.guru)}</b> · ${esc(p.mapel)} <span class="small-muted">(${p.tipe==='tahfidz'?'Tahfidz':'Reguler'})</span></li>`).join('');
+    const html=`<div class="warning-box"><h3>Rapor belum dapat dicetak.</h3>Masih ada guru yang belum mengirim nilai untuk kelas <b>${esc(kelas)}</b>.<ul>${list}</ul><div class="small-muted" style="margin-top:7px">Hubungi guru yang tercantum dan minta mereka menekan tombol “Kirim Nilai”.</div></div>`;
+    const old=document.getElementById('reportReadinessError'); if(old) old.remove();
+    const box=document.createElement('div'); box.id='reportReadinessError'; box.innerHTML=html;
+    const container=document.getElementById('reportContainer');
+    if(container) container.prepend(box); else toast('Rapor belum dapat dicetak. Masih ada nilai yang belum dikirim.');
+  }
+  return false;
+}
+function getWaliDataFor(student,kelas){
+  ensureNewFields();
+  let siswaObj=student && typeof student==='object' ? student : (db.siswa||[]).find(x=>norm(x.nama)===norm(student) && (!kelas || norm(x.kelas)===norm(kelas)));
+  const nama=siswaObj ? siswaObj.nama : (typeof student==='string'?student:'');
+  const kelasNama=kelas || (siswaObj?siswaObj.kelas:'');
+  const sid=siswaObj && siswaObj.id != null ? String(siswaObj.id) : '';
+  return (db.waliKelas||[]).find(w => norm(w.kelas)===norm(kelasNama) && ((sid && String(w.siswaId||'')===sid) || (!w.siswaId && norm(w.siswa)===norm(nama))) && String(w.semester||'')===currentSemester() && String(w.tahun||'')===currentYear()) || {};
+}
+function getTraitValue(w,key){
+  if(!w)return '';
+  const detail=w.perilakuDetail && typeof w.perilakuDetail==='object' ? w.perilakuDetail : {};
+  return detail[key] || w[key] || w.perilaku || '';
+}
+function loginError(message){
+  const el=document.getElementById('loginError'); if(el){el.textContent=message;el.style.display='block';}
+}
+window.refreshLoginAvailability=function(){
+  const btn=document.getElementById('loginButton'), status=document.getElementById('loginStatus');
+  if(!btn || !status) return;
+  btn.disabled=!window.rdmDataReady;
+  btn.style.opacity=window.rdmDataReady?'1':'.65';
+  btn.textContent=window.rdmDataReady?'Masuk':'Memuat Data...';
+  status.textContent=window.rdmDataReady?'Gunakan akun Admin atau username PegID Guru.':'Menghubungkan data madrasah. Tunggu sebentar sebelum masuk.';
+};
+function submitLogin(e){
+  e.preventDefault();
+  ensureNewFields();
+  if(!window.rdmDataReady){loginError('Data madrasah masih dimuat. Silakan coba kembali.');return;}
+  const username=String(document.getElementById('loginUsername').value||'').trim();
+  const password=String(document.getElementById('loginPassword').value||'');
+  const err=document.getElementById('loginError'); if(err){err.style.display='none';err.textContent='';}
+  if(username===RDM_ADMIN_USER && password===RDM_ADMIN_PASS){
+    currentUser={role:'admin',username:RDM_ADMIN_USER,nama:'Administrator'};
+  } else {
+    const guru=(db.guru||[]).find(g=>String(g.pegid||'').trim()===username);
+    if(!guru || password!==RDM_TEACHER_PASS){loginError('Username atau password tidak sesuai. Periksa kembali data login.');return;}
+    currentUser={role:'guru',username:username,guru:guru};
+  }
+  try{localStorage.setItem('rdm_last_login_username',username);}catch(storageError){}
+  adminReturnContext=null;
+  document.body.classList.remove('app-locked');
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('loginPassword').value='';
+  updateAdminReturnButton();
+  buildSidebar();
+  go('dashboard');
+  toast('Selamat datang, '+(currentUser.role==='admin'?'Administrator':currentUser.guru.nama));
+}
+function loginAsTeacher(guruId){
+  if(!currentUser || currentUser.role!=='admin'){toast('Fitur ini hanya tersedia untuk Administrator.');return;}
+  const guru=(db.guru||[]).find(g=>Number(g.id)===Number(guruId));
+  if(!guru || !String(guru.pegid||'').trim()){toast('Data Guru belum memiliki PegID sehingga tidak dapat dibuka.');return;}
+  adminReturnContext={role:'admin',username:RDM_ADMIN_USER,nama:'Administrator',returnPage:'pengguna'};
+  currentUser={role:'guru',username:String(guru.pegid).trim(),guru:guru,impersonatedByAdmin:true};
+  document.body.classList.remove('app-locked');
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('loginPassword').value='';
+  updateAdminReturnButton();
+  buildSidebar();
+  go('dashboard');
+  toast('Mode pratinjau akun Guru: '+guru.nama);
+}
+function returnToAdmin(){
+  if(!adminReturnContext){toast('Tidak ada sesi Administrator yang perlu dipulihkan.');return;}
+  const ctx=adminReturnContext;
+  adminReturnContext=null;
+  currentUser={role:'admin',username:ctx.username||RDM_ADMIN_USER,nama:ctx.nama||'Administrator'};
+  updateAdminReturnButton();
+  buildSidebar();
+  go(ctx.returnPage||'pengguna');
+  toast('Kembali ke Menu Admin.');
+}
+function updateAdminReturnButton(){
+  const btn=document.getElementById('returnAdminButton');
+  if(!btn)return;
+  btn.classList.toggle('hidden',!(adminReturnContext && teacherMode()));
+}
+function logout(){
+  currentUser=null; adminReturnContext=null; teacherGradeContext=null; waliEditContext=null;
+  document.body.classList.add('app-locked');
+  document.getElementById('loginScreen').classList.remove('hidden');
+  try{document.getElementById('loginUsername').value=localStorage.getItem('rdm_last_login_username')||'';}catch(storageError){}
+  document.getElementById('loginPassword').value='';
+  const err=document.getElementById('loginError'); if(err)err.style.display='none';
+  updateAdminReturnButton();
+  buildSidebar();
+  window.scrollTo(0,0);
+}
+function menuItem(pageName,icon,label){return `<div class="navitem" data-page="${pageName}"><span>${icon}</span><span class="navtext">${label}</span></div>`;}
+function buildSidebar(){
+  const side=document.getElementById('sidebar'); if(!side) return;
+  let html=`<div class="semester" id="sidebarSemester">SEMESTER ${(db.profil||{}).semester||'Ganjil'} ${(db.profil||{}).tahun||''}</div>`;
+  if(!currentUser){side.innerHTML=html;return;}
+  html+=menuItem('dashboard','◴','Dashboard');
+  if(currentUser.role==='admin'){
+    html+=menuItem('profil','▦','Profil Madrasah')+`<div class="navsection">DATA MASTER</div>`;
+    html+=menuItem('guru','♙','Guru')+menuItem('kelas','⚙','Kelas & Rombel')+menuItem('siswa','♧','Siswa');
+    html+=`<div class="navsection">MATA PELAJARAN</div>`+menuItem('mapel_reguler','▤','Mapel Reguler')+menuItem('mapel_tahfidz','▥','Mapel Tahfidz');
+    html+=`<div class="navsection">PENILAIAN</div>`+menuItem('nilai','▧','Input Nilai')+menuItem('rapor_akademik','▣','Rapor Akademik')+menuItem('rapor_tahfidz','۞','Rapor Tahfidz')+menuItem('legger_nilai','📋','Legger Nilai');
+    html+=`<div class="navsection">ADMINISTRASI</div>`+menuItem('pengguna','♧','Admin Aplikasi')+menuItem('backup','▤','Backup & Restore');
+    html+=`<div class="navsection">AKUN</div><div class="navitem" id="reset"><span>↻</span><span class="navtext">Reset Data Demo</span></div>`;
+  } else {
+    const hasReguler=teacherHasAssignmentType('reguler'),hasTahfidz=teacherHasAssignmentType('tahfidz');
+    if(hasReguler||hasTahfidz)html+=`<div class="navsection">PENILAIAN</div>`+menuItem('guru_pengisian','▧','Pengisian Nilai');
+    if(getWaliClasses().length){const wr=waliHasAssignmentType('reguler'),wt=waliHasAssignmentType('tahfidz');html+=`<div class="navsection">WALI KELAS</div>`+menuItem('siswa','♧','Siswa')+menuItem('guru_wali','✎','Wali Kelas');if(wr)html+=menuItem('guru_rapor_akademik','▣','Cetak Rapor Akademik');if(wt)html+=menuItem('guru_rapor_tahfidz','۞','Cetak Rapor Tahfidz');if(wr||wt)html+=menuItem('guru_legger','📋','Cetak Legger Nilai');}
+    html+=`<div class="navsection">AKUN</div>`;
+  }
+  html+=`<div class="navitem logout-item" id="logout"><span>⇥</span><span class="navtext">Logout (Keluar)</span></div>`;
+  side.innerHTML=html;
+  updateSidebarSemester();
+}
+function go(p){
+  if(!currentUser){return;}
+  if(teacherMode()){
+    const allowed=['dashboard'];if(teacherHasAssignmentType('reguler')||teacherHasAssignmentType('tahfidz'))allowed.push('guru_pengisian');if(getWaliClasses().length){allowed.push('siswa','guru_wali');if(waliHasAssignmentType('reguler'))allowed.push('guru_rapor_akademik','guru_legger');if(waliHasAssignmentType('tahfidz'))allowed.push('guru_rapor_tahfidz');}if(!allowed.includes(p)){toast('Menu tersebut tidak tersedia untuk hak akses akun ini.');return;}
+  }
+  page=p; currentSort={col:'',asc:true};
+  document.querySelectorAll('.navitem[data-page]').forEach(n=>n.classList.toggle('active',n.dataset.page===p));
+  const allTitles={
+    dashboard: teacherMode()?['Dashboard Guru','Ringkasan tugas pengisian nilai']:['Dashboard','Ringkasan pengelolaan rapor digital madrasah'],
+    profil:['Profil Madrasah','Identitas lembaga dan pengaturan semester'],kelas:['Kelas & Rombel','Kelola rombongan belajar dan wali kelas'],guru:['Data Guru','Kelola tenaga pendidik madrasah'],siswa:['Data Siswa','Data siswa sesuai kelas yang diampu'],mapel_reguler:['Mapel Reguler','Kelola mata pelajaran reguler'],mapel_tahfidz:['Mapel Tahfidz','Kelola daftar target hafalan dan murojaah'],nilai:['Input Nilai','Pengaturan Guru Mata Pelajaran pengisi nilai per kelas'],rapor_akademik:['Rapor Akademik','Pratinjau dan cetak laporan hasil belajar akademik'],rapor_tahfidz:['Rapor Tahfidz','Pratinjau dan cetak laporan hafalan'],legger_nilai:['Legger Nilai','Pratinjau dan cetak rekapitulasi nilai kelas'],pengguna:['Admin Aplikasi','Pengaturan pengguna aplikasi'],backup:['Backup & Restore','Simpan atau pulihkan data aplikasi'],guru_pengisian:['Pengisian Nilai','Isi dan kirim nilai untuk mata pelajaran yang diampu'],guru_wali:['Wali Kelas','Absensi, perilaku, dan catatan wali kelas'],guru_rapor_akademik:['Cetak Rapor Akademik','Rapor akademik untuk kelas yang diampu'],guru_rapor_tahfidz:['Cetak Rapor Tahfidz','Rapor tahfidz untuk kelas yang diampu'],guru_legger:['Cetak Legger Nilai','Legger nilai untuk kelas yang diampu']
+  };
+  const t=allTitles[p]||['Rapor Digital Madrasah',''];
+  if(document.getElementById('title'))document.getElementById('title').textContent=t[0];
+  if(document.getElementById('subtitle'))document.getElementById('subtitle').textContent=t[1];
+  if(document.getElementById('crumb'))document.getElementById('crumb').textContent=t[0];
+  const qa=document.getElementById('quickAdd');
+  if(qa) qa.classList.toggle('hidden',teacherMode() || ['dashboard','profil','rapor_akademik','rapor_tahfidz','backup','pengguna','nilai','guru_rapor_akademik','guru_rapor_tahfidz','guru_legger'].includes(p));
+  render();
+}
+function render(){
+  ensureNewFields(); updateSidebarSemester();
+  const c=document.getElementById('content'); if(!c)return;
+  if(!currentUser){return;}
+  if(currentUser.role==='admin'){renderBase();return;}
+  if(page==='dashboard'){c.innerHTML=teacherDashboard();return;}
+  if(page==='guru_pengisian'){c.innerHTML=teacherGradeList();return;}
+  if(page==='siswa' && getWaliClasses().length){c.innerHTML=teacherSiswaPage();return;}
+  if(page==='guru_wali' && getWaliClasses().length){c.innerHTML=waliClassPage();return;}
+  if(page==='guru_rapor_akademik' && getWaliClasses().length){c.innerHTML=report('akademik');return;}
+  if(page==='guru_rapor_tahfidz' && getWaliClasses().length){c.innerHTML=report('tahfidz');return;}
+  if(page==='guru_legger' && getWaliClasses().length){c.innerHTML=leggerPage();setTimeout(updateLeggerFilter,0);return;}
+  c.innerHTML='<section class="card"><div class="cardbody empty">Menu tidak tersedia untuk akun ini.</div></section>';
+}
+function teacherDashboard(){
+  const assigned=getTeacherAssignments();
+  const pending=assigned.filter(p=>!getSubmission(p.kelas,p.mapel,p.tipe,p.guru)).length;
+  const classes=[...new Set(assigned.map(p=>p.kelas))];
+  return `<div class="notice"><h3>Selamat datang, ${esc(currentGuru().nama)}</h3><p>Silakan isi seluruh nilai mata pelajaran yang ditugaskan dan tekan tombol “Kirim Nilai” agar rapor bisa diproses.</p></div>
+  <div class="row"><section class="card"><div class="cardbody"><div class="small-muted">Kelas diampu</div><div style="font-size:30px;font-weight:700">${classes.length}</div></div></section><section class="card"><div class="cardbody"><div class="small-muted">Mata pelajaran ditugaskan</div><div style="font-size:30px;font-weight:700">${assigned.length}</div></div></section><section class="card"><div class="cardbody"><div class="small-muted">Belum dikirim</div><div style="font-size:30px;font-weight:700;color:${pending?'#dc2626':'#16803d'}">${pending}</div></div></section></div>
+  <section class="card"><div class="cardhead">Akses Cepat</div><div class="cardbody"><button onclick="go('guru_pengisian')">▧ Pengisian Nilai</button>${getWaliClasses().length?` <button class="secondary" onclick="go('siswa')">♧ Data Siswa</button> <button class="secondary" onclick="go('guru_wali')">✎ Wali Kelas</button>`:''}</div></section>`;
+}
+function setTeacherGradeCategory(category){
+  if(category!=='akademik' && category!=='tahfidz')return;
+  teacherGradeCategory=category;
+  teacherGradeContext=null;
+  render();
+}
+function teacherGradeList(){
+  const allAssignments=getTeacherAssignments();
+  const hasReguler=allAssignments.some(p=>norm(p.tipe)!=='tahfidz'),hasTahfidz=allAssignments.some(p=>norm(p.tipe)==='tahfidz');if(teacherGradeCategory==='akademik'&&!hasReguler&&hasTahfidz)teacherGradeCategory='tahfidz';if(teacherGradeCategory==='tahfidz'&&!hasTahfidz&&hasReguler)teacherGradeCategory='akademik';
+  const assignments=allAssignments.filter(p=>teacherGradeCategory==='tahfidz' ? norm(p.tipe)==='tahfidz' : norm(p.tipe)!=='tahfidz');
+  const categoryBar=`<div class="tabs teacher-category">${hasReguler?`<button type="button" class="${teacherGradeCategory==='akademik'?'selected':''}" onclick="setTeacherGradeCategory('akademik')">▣ Pilihan Pengisian Rapor Akademik</button>`:''}${hasTahfidz?`<button type="button" class="${teacherGradeCategory==='tahfidz'?'selected':''}" onclick="setTeacherGradeCategory('tahfidz')">۞ Pilihan Pengisian Rapor Tahfidz</button>`:''}</div>`;
+  if(!allAssignments.length)return `<section class="card"><div class="cardhead">Pengisian Nilai</div><div class="cardbody">${categoryBar}<div class="empty">Belum ada kelas dan mata pelajaran yang ditetapkan untuk akun ${esc(currentGuru().nama)}. Silakan hubungi Admin untuk pengaturan melalui menu Input Nilai.</div></div></section>`;
+  const rows=assignments.map(p=>{
+    const sent=!!getSubmission(p.kelas,p.mapel,p.tipe,p.guru);
+    // Encode apostrophes explicitly: encodeURIComponent leaves apostrophes untouched, which broke the first Al-Qur'an Hadis button.
+    const encK=encodeURIComponent(p.kelas).replace(/'/g,'%27'),encM=encodeURIComponent(p.mapel).replace(/'/g,'%27'),encT=encodeURIComponent(p.tipe).replace(/'/g,'%27');
+    return `<tr><td>${esc(p.kelas)}</td><td>${esc(p.mapel)}</td><td>${p.tipe==='tahfidz'?'Tahfidz':'Reguler'}</td><td style="text-align:center"><span class="teacher-status ${sent?'sent':'pending'}" title="${sent?'Nilai telah dikirim':'Nilai belum dikirim'}">${sent?'✓':'✕'}</span> <span class="small-muted">${sent?'Sudah dikirim':'Belum dikirim'}</span></td><td><button type="button" class="${sent?'secondary':'green'}" onclick="openTeacherGradeEntry(decodeURIComponent('${encK}'),decodeURIComponent('${encM}'),decodeURIComponent('${encT}'))">${sent?'Lihat / Ubah Nilai':'Isi Nilai'}</button></td></tr>`;
+  }).join('');
+  return `<section class="card"><div class="cardhead">Kategori Pilihan Pengisian Rapor</div><div class="cardbody">${categoryBar}<p class="small-muted">Tanda ✕ merah berarti nilai belum dikirim. Tanda ✓ hijau berarti pengiriman nilai sudah tercatat.</p>${assignments.length?`<div class="tablewrap"><table><thead><tr><th>Kelas</th><th>Mata Pelajaran / Target</th><th>Jenis</th><th>Status</th><th>Aksi</th></tr></thead><tbody>${rows}</tbody></table></div>`:`<div class="empty">Belum ada penugasan mata pelajaran untuk kategori Rapor ${teacherGradeCategory==='tahfidz'?'Tahfidz':'Akademik'}.</div>`}</div></section><div id="teacherGradeEditor"></div>`;
+}
+function openTeacherGradeEntry(kelas,mapel,tipe){const assignment=getTeacherAssignments().find(p=>norm(p.kelas)===norm(kelas)&&norm(p.mapel)===norm(mapel)&&norm(p.tipe)===norm(tipe));if(!assignment){toast('Akses mata pelajaran tidak ditemukan untuk akun ini.');return;}teacherGradeContext={kelas,mapel,tipe,guru:assignment.guru};const siswa=(db.siswa||[]).filter(s=>norm(s.kelas)===norm(kelas));const nilaiFor=s=>(db.nilai||[]).find(n=>norm(n.siswa)===norm(s.nama)&&norm(n.kelas||kelas)===norm(kelas)&&norm(n.mapel)===norm(mapel)&&(!n.semester||String(n.semester)===currentSemester())&&(!n.tahun||String(n.tahun)===currentYear())&&(!n.tipe||norm(n.tipe)===norm(tipe)));const body=siswa.map((s,i)=>{const n=nilaiFor(s)||{};const val=n.jumlahNilai!==undefined&&n.jumlahNilai!==''?n.jumlahNilai:(n.pengetahuan!==undefined&&n.keterampilan!==undefined?Math.round((Number(n.pengetahuan||0)+Number(n.keterampilan||0))/2):'');return `<tr><td>${i+1}</td><td>${esc(s.nama)}</td><td><input class="score-input" type="number" name="score_${s.id}" min="0" max="100" step="1" required value="${val===''?'':Number(val)}"></td>${tipe==='tahfidz'?`<td><textarea class="note-input" name="note_${s.id}">${esc(n.catatanGuru||'')}</textarea></td>`:''}</tr>`;}).join('');const root=document.getElementById('modalroot');if(!root)return;root.innerHTML=`<div class="modalback grade-modal" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modalhead"><span>Pengisian Nilai · ${esc(kelas)} · ${esc(mapel)}</span><button class="xbtn" type="button" onclick="closeModal()">×</button></div><form id="teacherGradeForm" onsubmit="submitTeacherGrades(event)"><div class="modalbody">${siswa.length?`<div class="small-muted" style="margin-bottom:10px">Reset Nilai mengosongkan seluruh nilai/catatan pada form ini.</div><div class="tablewrap"><table><thead><tr><th>No</th><th>Nama Siswa</th><th>Jumlah Nilai</th>${tipe==='tahfidz'?'<th>Catatan Guru</th>':''}</tr></thead><tbody>${body}</tbody></table></div>`:`<div class="empty">Tidak ada siswa terdaftar pada kelas ini.</div>`}</div><div class="modalfoot"><div class="modal-actions-left"><button type="button" class="danger" onclick="resetTeacherGradeForm()">↺ Reset Nilai</button></div><div class="modal-actions-right"><button class="secondary" type="button" onclick="closeModal()">Tutup</button>${siswa.length?'<button class="green" type="submit">✓ Kirim Nilai</button>':''}</div></div></form></div></div>`;}
+function resetTeacherGradeForm(){const form=document.getElementById('teacherGradeForm');if(!form)return;if(!confirm('Kosongkan seluruh nilai dan catatan pada form ini?'))return;form.querySelectorAll('input[type="number"],textarea').forEach(el=>el.value='');toast('Seluruh nilai pada form sudah dikosongkan.');}
+function submitTeacherGrades(e){
+  e.preventDefault();
+  if(!teacherGradeContext||!teacherMode()){toast('Sesi pengisian nilai tidak valid.');return;}
+  const ctx=teacherGradeContext;
+  if(!ensureClassUnlocked(ctx.kelas))return;
+  const assignment=getTeacherAssignments().find(p=>norm(p.kelas)===norm(ctx.kelas)&&norm(p.mapel)===norm(ctx.mapel)&&norm(p.tipe)===norm(ctx.tipe));
+  if(!assignment){toast('Anda tidak memiliki hak mengirim nilai untuk mata pelajaran ini.');return;}
+  const fd=new FormData(e.target); const students=(db.siswa||[]).filter(s=>norm(s.kelas)===norm(ctx.kelas));
+  if(!students.length){toast('Tidak ada siswa untuk dinilai.');return;}
+  const scores=[];
+  for(const s of students){
+    const raw=fd.get('score_'+s.id);
+    if(raw===null||String(raw).trim()===''){toast('Jumlah Nilai untuk '+s.nama+' belum diisi.');return;}
+    const score=Number(raw);
+    if(!Number.isFinite(score)||score<0||score>100){toast('Nilai '+s.nama+' harus berada pada rentang 0 sampai 100.');return;}
+    scores.push({siswa:s,score:score,catatan:String(fd.get('note_'+s.id)||'').trim()});
+  }
+  ensureNewFields();
+  scores.forEach(row=>{
+    let found=(db.nilai||[]).find(n=>gradeBelongsToStudent(n,row.siswa)&&norm(n.kelas||ctx.kelas)===norm(ctx.kelas)&&norm(n.mapel)===norm(ctx.mapel)&&(!n.semester||String(n.semester)===currentSemester())&&(!n.tahun||String(n.tahun)===currentYear())&&(!n.tipe||norm(n.tipe)===norm(ctx.tipe)));
+    const values={siswaId:row.siswa.id,siswa:row.siswa.nama,nism:studentNism(row.siswa),nis:row.siswa.nis||studentNism(row.siswa),kelas:ctx.kelas,mapel:ctx.mapel,tipe:ctx.tipe,pengetahuan:row.score,keterampilan:row.score,jumlahNilai:row.score,semester:currentSemester(),tahun:currentYear(),guru:ctx.guru};
+    if(ctx.tipe==='tahfidz')values.catatanGuru=row.catatan;
+    if(found)Object.assign(found,values);else db.nilai.push({id:Math.max(0,...db.nilai.map(n=>Number(n.id)||0))+1,...values});
+  });
+  let sent=(db.pengirimanNilai||[]).find(x=>norm(x.kelas)===norm(ctx.kelas)&&norm(x.mapel)===norm(ctx.mapel)&&norm(x.tipe)===norm(ctx.tipe)&&norm(x.guru)===norm(ctx.guru)&&String(x.semester||'')===currentSemester()&&String(x.tahun||'')===currentYear());
+  const sentData={kelas:ctx.kelas,mapel:ctx.mapel,tipe:ctx.tipe,guru:ctx.guru,semester:currentSemester(),tahun:currentYear(),status:'terkirim',terkirim:true,jumlahSiswa:scores.length,waktuKirim:new Date().toISOString()};
+  if(sent)Object.assign(sent,sentData);else db.pengirimanNilai.push({id:Math.max(0,...db.pengirimanNilai.map(x=>Number(x.id)||0))+1,...sentData});
+  save();
+  const cont=document.getElementById('teacherGradeEditor'); if(cont)cont.innerHTML='';
+  teacherGradeContext=null;
+  toast('Nilai berhasil dikirim dan masuk ke data rapor serta Legger.');
+  render();
+}
+function teacherSiswaPage(){
+  const own=getWaliClasses();
+  const opts=own.map(k=>`<option value="${esc(k)}">${esc(k)}</option>`).join('');
+  const list=(db.siswa||[]).filter(s=>own.some(k=>norm(k)===norm(s.kelas)));
+  return `<section class="card"><div class="cardhead">Data Siswa Kelas yang Diampu</div><div class="cardbody"><div class="toolbar"><input id="search" placeholder="Cari siswa..." oninput="filterTable()"><select id="filterSelect" onchange="filterTable()"><option value="">Semua Kelas Wali</option>${opts}</select><span class="spacer"></span><button onclick="openForm('siswa')">＋ Tambah Siswa</button></div><div class="tablewrap"><table><thead><tr>${configs.siswa.fields.map(f=>`<th>${f[1]}</th>`).join('')}<th>Aksi</th></tr></thead><tbody id="tbody">${rows('siswa',list)}</tbody></table></div><div id="rowCounter" class="data-row"><span>Total data</span><span>${list.length} siswa</span></div></div></section>`;
+}
+function filterTable(){
+  const q=document.getElementById('search')?document.getElementById('search').value.toLowerCase():'';
+  const filterVal=document.getElementById('filterSelect')?document.getElementById('filterSelect').value:'';
+  let arr=(db[page]||[]);
+  if(page==='siswa'&&teacherMode())arr=arr.filter(s=>teacherOwnsClass(s.kelas));
+  arr=arr.filter(o=>{
+    const matchesText=Object.values(o).join(' ').toLowerCase().includes(q);
+    let matchesDropdown=true;
+    if(filterVal && page==='siswa') matchesDropdown=o.kelas===filterVal;
+    else if(filterVal && page==='mapel_tahfidz') matchesDropdown=o.kelompok===filterVal;
+    return matchesText && matchesDropdown;
+  });
+  if(currentSort.col)arr.sort((a,b)=>{const A=a[currentSort.col]||'',B=b[currentSort.col]||'';if(!isNaN(A)&&!isNaN(B))return currentSort.asc?Number(A)-Number(B):Number(B)-Number(A);return currentSort.asc?String(A).localeCompare(String(B)):String(B).localeCompare(String(A));});
+  const tbody=document.getElementById('tbody');if(tbody)tbody.innerHTML=rows(page,arr);
+  const counter=document.getElementById('rowCounter');if(counter)counter.innerHTML=`<span>Total data</span><span>${arr.length} baris ditampilkan</span>`;
+}
+function openForm(key,id=null){
+  if(teacherMode()&&key==='siswa'){
+    let obj=id?(db.siswa||[]).find(x=>Number(x.id)===Number(id)):{};
+    if(id&&(!obj||!teacherOwnsClass(obj.kelas))){toast('Anda hanya dapat mengubah siswa pada kelas yang diampu.');return;}
+    editing={key:'siswa',id:id};
+    const own=getWaliClasses();
+    const options=own.map(k=>`<option value="${esc(k)}" ${obj.kelas===k?'selected':''}>${esc(k)}</option>`).join('');
+    document.getElementById('modalroot').innerHTML=`<div class="modalback" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modalhead">${id?'Edit':'Tambah'} Data Siswa<button class="xbtn" type="button" onclick="closeModal()">×</button></div><form onsubmit="submitForm(event)"><div class="modalbody"><div class="field"><label>NIS</label><input name="nis" required value="${esc(obj.nis||'')}"></div><div class="field"><label>NISN</label><input name="nisn" value="${esc(obj.nisn||'')}"></div><div class="field"><label>Nama Lengkap</label><input name="nama" required value="${esc(obj.nama||'')}"></div><div class="field"><label>Kelas</label><select name="kelas" required>${options}</select></div><div class="field"><label>Jenis Kelamin</label><select name="jk"><option value="L" ${obj.jk!=='P'?'selected':''}>Laki-laki</option><option value="P" ${obj.jk==='P'?'selected':''}>Perempuan</option></select></div></div><div class="modalfoot"><button class="secondary" type="button" onclick="closeModal()">Batal</button><button type="submit">Simpan</button></div></form></div></div>`;
+    return;
+  }
+  if(teacherMode()){toast('Akun Guru tidak dapat mengubah data master ini.');return;}
+  openFormBase(key,id);
+}
+function submitForm(e){
+  if(teacherMode()&&editing&&editing.key==='siswa'){
+    e.preventDefault();const fd=new FormData(e.target),obj=Object.fromEntries(fd.entries());
+    if(!teacherOwnsClass(obj.kelas)){toast('Kelas siswa harus termasuk kelas yang Anda ampu.');return;}
+    if(!Array.isArray(db.siswa))db.siswa=[];
+    if(editing.id){const target=db.siswa.find(x=>Number(x.id)===Number(editing.id));if(!target||!teacherOwnsClass(target.kelas)){toast('Akses siswa tidak diizinkan.');return;}Object.assign(target,obj);}
+    else{obj.id=Math.max(0,...db.siswa.map(x=>Number(x.id)||0))+1;db.siswa.push(obj);}
+    save();closeModal();render();toast('Data siswa berhasil disimpan.');return;
+  }
+  if(teacherMode()){toast('Akun Guru tidak berhak mengubah data master ini.');return;}
+  submitFormBase(e);
+}
+function del(key,id){
+  if(teacherMode()&&key==='siswa'){
+    const student=(db.siswa||[]).find(s=>Number(s.id)===Number(id));
+    if(!student||!teacherOwnsClass(student.kelas)){toast('Anda hanya dapat menghapus siswa pada kelas yang diampu.');return;}
+    if(!confirm('Hapus data siswa '+student.nama+'?'))return;
+    db.siswa=db.siswa.filter(s=>Number(s.id)!==Number(id));save();render();toast('Data siswa dihapus.');return;
+  }
+  if(teacherMode()){toast('Akun Guru tidak berhak menghapus data master ini.');return;}
+  delBase(key,id);
+}
+function waliClassPage(){
+  const own=getWaliClasses();const list=(db.siswa||[]).filter(s=>own.some(k=>norm(k)===norm(s.kelas)));
+  if(!list.length)return `<section class="card"><div class="cardhead">Wali Kelas</div><div class="cardbody empty">Belum ada siswa terdaftar pada kelas yang Anda ampu.</div></section>`;
+  const traitKeys=['kedisiplinan','kebersihan','kerjasama','kesopanan','kemandirian','kerajinan'];
+  const rowsHtml=list.map((s,i)=>{const w=getWaliDataFor(s,s.kelas);const ratings=traitKeys.map(k=>getTraitValue(w,k)).filter(Boolean);const perilaku=ratings.length?ratings.join(' / '):'-';return `<tr><td>${i+1}</td><td>${esc(s.kelas)}</td><td style="font-weight:600">${esc(s.nama)}</td><td>${Number(w.sakit||0)}</td><td>${Number(w.izin||0)}</td><td>${Number(w.alpha||0)}</td><td>${esc(perilaku)}</td><td>${esc(w.catatan||'-')}</td><td><button class="secondary" onclick="openWaliForm(${Number(s.id)})">Form Isi / Edit</button></td></tr>`;}).join('');
+  return `<section class="card"><div class="cardhead">Absensi, Kepribadian / Perilaku, dan Catatan Wali Kelas</div><div class="cardbody"><p class="small-muted">S = Sakit, I = Izin, A = Tanpa Keterangan. Setiap aspek perilaku diisi dengan predikat A, B, C, atau D. Data disimpan sesuai siswa, kelas, semester, dan tahun pelajaran aktif.</p><div class="tablewrap"><table><thead><tr><th>No</th><th>Kelas</th><th>Nama Siswa</th><th>S</th><th>I</th><th>A</th><th>Predikat Perilaku (6 Aspek)</th><th>Catatan Wali Kelas</th><th>Form</th></tr></thead><tbody>${rowsHtml}</tbody></table></div></div></section><div id="waliModalRoot"></div>`;
+}
+function openWaliForm(studentId){
+  const student=(db.siswa||[]).find(s=>Number(s.id)===Number(studentId));
+  if(!student||!teacherOwnsClass(student.kelas)){toast('Siswa bukan bagian dari kelas wali Anda.');return;}
+  if(!ensureClassUnlocked(student.kelas))return;
+  const w=getWaliDataFor(student,student.kelas);waliEditContext={studentId:student.id,kelas:student.kelas};
+  const root=document.getElementById('waliModalRoot');if(!root)return;
+  const traits=[
+    ['kedisiplinan','Kedisiplinan & Tanggung Jawab'],
+    ['kebersihan','Kebersihan dan Kerapian'],
+    ['kerjasama','Kerjasama'],
+    ['kesopanan','Kesopanan'],
+    ['kemandirian','Kemandirian'],
+    ['kerajinan','Kerajinan']
+  ];
+  const traitFields=traits.map(([key,label])=>{
+    const value=getTraitValue(w,key);
+    const opts=['A','B','C','D'].map(v=>`<option value="${v}" ${value===v?'selected':''}>${v}</option>`).join('');
+    return `<div class="field"><label>${label}</label><select name="perilaku_${key}" required><option value="">-- Pilih A/B/C/D --</option>${opts}</select></div>`;
+  }).join('');
+  root.innerHTML=`<div class="modalback" onclick="if(event.target===this)closeWaliForm()"><div class="modal"><div class="modalhead">Form Wali Kelas · ${esc(student.nama)}<button class="xbtn" type="button" onclick="closeWaliForm()">×</button></div><form onsubmit="saveWaliForm(event)"><div class="modalbody"><div class="row"><div class="field"><label>Nama Siswa</label><input value="${esc(student.nama)}" disabled></div><div class="field"><label>Kelas</label><input value="${esc(student.kelas)}" disabled></div></div><div class="row"><div class="field"><label>S = Sakit (hari)</label><input type="number" min="0" step="1" name="sakit" required value="${Number(w.sakit||0)}"></div><div class="field"><label>I = Izin (hari)</label><input type="number" min="0" step="1" name="izin" required value="${Number(w.izin||0)}"></div></div><div class="field"><label>A = Tanpa Keterangan (hari)</label><input type="number" min="0" step="1" name="alpha" required value="${Number(w.alpha||0)}"></div><div style="font-weight:700;margin:12px 0 8px">Kepribadian / Perilaku (A = Sangat Baik, B = Baik, C = Cukup, D = Kurang Baik)</div><div class="trait-grid">${traitFields}</div><div class="field" style="margin-top:12px"><label>Catatan Wali Kelas</label><textarea name="catatan" placeholder="Masukkan catatan perkembangan siswa...">${esc(w.catatan||'')}</textarea></div></div><div class="modalfoot"><button class="secondary" type="button" onclick="closeWaliForm()">Batal</button><button class="green" type="submit">Simpan Data Wali Kelas</button></div></form></div></div>`;
+}
+function closeWaliForm(){const root=document.getElementById('waliModalRoot');if(root)root.innerHTML='';waliEditContext=null;}
+function saveWaliForm(e){
+  e.preventDefault();if(!teacherMode()||!waliEditContext)return;
+  const student=(db.siswa||[]).find(s=>Number(s.id)===Number(waliEditContext.studentId));
+  if(!student||!teacherOwnsClass(student.kelas)){toast('Akses wali kelas tidak valid.');return;}
+  if(!ensureClassUnlocked(student.kelas))return;
+  const fd=new FormData(e.target);
+  const perilakuDetail={kedisiplinan:String(fd.get('perilaku_kedisiplinan')||''),kebersihan:String(fd.get('perilaku_kebersihan')||''),kerjasama:String(fd.get('perilaku_kerjasama')||''),kesopanan:String(fd.get('perilaku_kesopanan')||''),kemandirian:String(fd.get('perilaku_kemandirian')||''),kerajinan:String(fd.get('perilaku_kerajinan')||'')};
+  if(Object.values(perilakuDetail).some(v=>!['A','B','C','D'].includes(v))){toast('Pilih predikat A, B, C, atau D untuk keenam aspek perilaku.');return;}
+  const row={siswaId:student.id,siswa:student.nama,kelas:student.kelas,sakit:Math.max(0,Number(fd.get('sakit')||0)),izin:Math.max(0,Number(fd.get('izin')||0)),alpha:Math.max(0,Number(fd.get('alpha')||0)),perilaku:perilakuDetail.kedisiplinan,perilakuDetail:perilakuDetail,catatan:String(fd.get('catatan')||'').trim(),semester:currentSemester(),tahun:currentYear(),wali:currentGuru().nama};
+  let old=(db.waliKelas||[]).find(w=>String(w.siswaId||'')===String(student.id)&&norm(w.kelas)===norm(student.kelas)&&String(w.semester||'')===currentSemester()&&String(w.tahun||'')===currentYear());
+  if(old)Object.assign(old,row);else db.waliKelas.push({id:Math.max(0,...db.waliKelas.map(w=>Number(w.id)||0))+1,...row});
+  save();closeWaliForm();render();toast('Data wali kelas berhasil disimpan.');
+}
+function renderSiswaListForReport(type){renderSiswaListForReportBase(type);if(!teacherMode())return;const k=document.getElementById('reportKelas')?document.getElementById('reportKelas').value:'';if(!k)return;if(!reportReadyForType(k,type,true)){['reportContainer','printAllContainer'].forEach(id=>{const root=document.getElementById(id);if(root)root.querySelectorAll('button').forEach(b=>{b.disabled=true;b.style.opacity='.55';});});}}
+function printSingleStudent(studentRef,reportType,category){const student=resolveStudentRef(studentRef);if(!student){toast('Data siswa tidak ditemukan berdasarkan ID/NISM.');return;}if(teacherMode()){const type=String(reportType).startsWith('tahfidz')?'tahfidz':'akademik';if(!reportReadyForType(student.kelas,type,true))return;}printSingleStudentBase(student.id,reportType,category);}
+function printAllClassReport(reportType,category){const kelas=document.getElementById('reportKelas')?document.getElementById('reportKelas').value:'';if(teacherMode()&&kelas){const type=String(reportType).startsWith('tahfidz')?'tahfidz':'akademik';if(!reportReadyForType(kelas,type,true))return;}printAllClassReportBase(reportType,category);}
+
+/* Semua event menu dipasang secara delegasi karena sidebar berganti sesuai role. */
+const sidebarElement=document.getElementById('sidebar');
+if(sidebarElement){
+  sidebarElement.addEventListener('click',function(e){
+    const item=e.target.closest('.navitem');if(!item)return;
+    if(item.id==='logout'){logout();return;}
+    if(item.id==='reset'){
+      if(currentUser&&currentUser.role==='admin'&&confirm('Kembalikan data ke awal (demo)? Semua perubahan lokal Anda akan hilang!')){
+        localStorage.removeItem('rdm_mi_data');db=JSON.parse(JSON.stringify(initial));ensureNewFields();save();go('dashboard');toast('Data berhasil direset ke mode awal');
+      }
+      return;
+    }
+    if(item.dataset.page){go(item.dataset.page);if(window.innerWidth<=900)document.body.classList.add('sidecollapsed');}
+  });
+}
+// Ingat username terakhir di perangkat ini, tanpa menyimpan password.
+try {
+  const rememberedUsername=localStorage.getItem('rdm_last_login_username');
+  const usernameInput=document.getElementById('loginUsername');
+  if(usernameInput && rememberedUsername) usernameInput.value=rememberedUsername;
+} catch(storageError) {}
+
+// Ganti halaman awal menjadi gerbang login, tanpa mengubah format output rapor.
+useLocalData();
+ensureNewFields();
+updateSidebarSemester();
+buildSidebar();
+updateAdminReturnButton();
+render();
+window.refreshLoginAvailability();
+loadData();
+
+</script>
+</body>
+</html>
